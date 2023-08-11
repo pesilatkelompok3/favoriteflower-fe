@@ -1,8 +1,13 @@
+"use client";
+import { Navbar } from "flowbite-react";
+import { Dropdown } from "flowbite-react";
 export default function Product() {
-    return (
-      <main>
-        <h1>This is Product</h1>
-      </main>
-    )
-  }
-  
+  return (
+    <Dropdown label="Dropdown button">
+      <Dropdown.Item>Dashboard</Dropdown.Item>
+      <Dropdown.Item>Settings</Dropdown.Item>
+      <Dropdown.Item>Earnings</Dropdown.Item>
+      <Dropdown.Item>Sign out</Dropdown.Item>
+    </Dropdown>
+  );
+}
