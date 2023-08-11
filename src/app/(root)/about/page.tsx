@@ -2,7 +2,7 @@ import { Hero } from "@/components/Hero";
 const About = () => {
   return (
     <div>
-      <Hero />
+      <Hero title="Tentang Kami" bread1="Beranda" bread2="Tentang"/>
     </div>
   );
 };
