@@ -1,27 +1,35 @@
-"use client"
+"use client";
 
-import { Dropdown, Navbar } from "flowbite-react"
+import { Navbar, Button } from "flowbite-react";
+import Link from "next/link";
 
-export default function NavbarWithDropdown() {
+const NavigationBar = (): React.ReactElement => {
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite React
+    <Navbar fluid>
+      <Navbar.Brand href="/">
+        <span className="text-xl font-semibold drop-shadow dark:text-white  md:-ml-2">
+          FavoriteFlower
         </span>
       </Navbar.Brand>
-      <Navbar.Collapse>
-        <Navbar.Link active href="#">
-          <p>Home</p>
-        </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
-      </Navbar.Collapse>
-      <div className="flex md:order-2">
+      <div className="flex md:order-2 items-center">
+        <Button className="font-medium h-8 bg-primary">
+          <Link href="#"> Hubungi Kami</Link>
+        </Button>
         <Navbar.Toggle />
       </div>
+      <Navbar.Collapse>
+        <Navbar.Link href="/" className="font-medium">
+          Beranda
+        </Navbar.Link>
+        <Navbar.Link href="/about" className="font-medium">
+          Tentang Kami
+        </Navbar.Link>
+        <Navbar.Link href="/products" className="font-medium">
+          Produk
+        </Navbar.Link>
+      </Navbar.Collapse>
     </Navbar>
-  )
-}
+  );
+};
+
+export default NavigationBar;
