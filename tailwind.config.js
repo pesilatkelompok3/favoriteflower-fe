@@ -32,6 +32,13 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    colors: {
+      'primary': '#3CB99A',
+      'secondary': '#F0D1E9',
+      'accent': '#BA3B5D',
+      'black': '#040C06',
+      'white': '#ECF9EF'
+    }
   },
   plugins: [require("flowbite/plugin")],
 };
