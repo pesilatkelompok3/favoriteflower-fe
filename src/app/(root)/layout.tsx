@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="sticky top-0">
-          <Navbar />
+          {/* <Navbar /> */}
         </header>
         <main className="min-h-screen">{children}</main>
         <footer>
