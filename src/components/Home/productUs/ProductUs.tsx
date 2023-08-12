@@ -1,5 +1,5 @@
 "use client";
-import ProductCard from "@/components/Home/product/ProductCard";
+import ProductCard from "@/components/Home/productUs/ProductCard";
 import React, { useRef, useEffect } from "react";
 export default function ProductUs() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
