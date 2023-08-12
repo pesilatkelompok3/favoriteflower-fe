@@ -17,7 +17,7 @@ const Navbar = (): React.ReactElement => {
           <Link href="#" className="mx-2">
             <span className="font-semibold text-2xl">FavoriteFlower</span>
           </Link>
-          <Button clickHandler={setToggle}>
+          <Button buttonType="button" clickHandler={setToggle}>
             <RxHamburgerMenu className="cursor-pointer h-[24px] w-[24px] mx-2 md:hidden" />
           </Button>
           <div
@@ -37,6 +37,7 @@ const Navbar = (): React.ReactElement => {
               </li>
               <li>
                 <ContactButton
+                  buttonType="button"
                   className="bg-green-400 w-full px-2 h-[28px] rounded-md cursor-pointer flex justify-center items-center hover:bg-green-500 text-white"
                   clickHandler={() => {
                     location.href = "https://wa.me/6281234567890";
