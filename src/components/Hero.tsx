@@ -20,7 +20,7 @@ export const Hero = ({ title, bread1, bread2 }: Props) => {
             <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48 ">
               <Link href="/" className="hover:text-primary">
                 {bread1}
-              </Link>{" "}
+              </Link>
               / {bread2}
             </p>
           </div>
