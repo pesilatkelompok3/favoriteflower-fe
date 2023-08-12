@@ -1,3 +1,10 @@
+import { Hero } from "@/components/Hero";
+
+
 export default function Home() {
-  return <h1>This is main</h1>
+  return (
+    <main>
+      <Hero title={""} bread1={""} bread2={""} />
+    </main>
+  );
 }
