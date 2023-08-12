@@ -1,7 +1,7 @@
 export default function Dashboard() {
     return (
       <main>
-        <h1>This is Admin Dashboard</h1>
+        <h1>Test</h1>
       </main>
     )
   }
