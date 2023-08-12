@@ -1,4 +1,4 @@
-import Image1 from "~/assets/image/7a41c59ebeff0bc91f253a0c85d18e01.jpeg";
+import Image1 from "~/assets/images/7a41c59ebeff0bc91f253a0c85d18e01.jpeg";
 import Image from "next/image";
 
 export default function ProductCard() {
