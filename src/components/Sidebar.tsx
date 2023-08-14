@@ -21,7 +21,7 @@ const Sidebar = (): React.ReactElement => {
         <RxHamburgerMenu className="cursor-pointer h-[24px] w-[24px] mx-2" />
       </Button>
       {toggle && (
-        <aside className="flex flex-col bg-gray-800 h-full w-1/2 items-center md:w-1/5 md:items-start fixed z-40 md:static md:h-screen">
+        <aside className="flex flex-col bg-gray-800 h-full w-1/2 items-center md:w-1/5 md:items-start fixed z-40 md:static md:h-[1080px]">
           <Button
             buttonType="button"
             clickHandler={setToggle}

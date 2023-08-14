@@ -1,9 +1,7 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
-// import { isAuthenticated } from "@lib/auth";
+import { NextResponse, NextRequest } from "next/server";
 
 export const middleware = (request: NextRequest) => {
-  return NextResponse.redirect(new URL("/admin", request.url));
+  // return NextResponse.redirect(new URL("/admin", request.url));
 };
 
 export const config = {

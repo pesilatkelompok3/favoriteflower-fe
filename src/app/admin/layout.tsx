@@ -21,8 +21,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="md:flex">
           <Sidebar />
-          {/* <main className="ml-4 w-full h-screen">{children}</main> */}
-          <main>{children}</main>
+          <main className="ml-4 w-full h-screen">{children}</main>
+          {/* <main>{children}</main> */}
         </div>
       </body>
     </html>
