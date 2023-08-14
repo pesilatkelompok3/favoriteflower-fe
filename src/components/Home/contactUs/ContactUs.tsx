@@ -6,9 +6,9 @@ const ContactUs = () => {
   return (
     <>
       <div className="w-full h-auto flex justify-center items-center">
-        <div className="w-24 bg-black" style={{ height: "1px" }}></div>
+        <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
         <h1 className="mx-4 text-lg font-bold underline">Kontak Kami</h1>
-        <div className="w-24 bg-black" style={{ height: "1px" }}></div>
+        <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
       </div>
       <div className="my-8 mx-8 flex flex-col md:flex-row md:items-center justify-center md:gap-12 md:mx-6">
         <div className="hidden md:block rounded-md">
@@ -25,10 +25,7 @@ const ContactUs = () => {
 
         <form action={""} method="post">
           <div className="mb-6 md:w-[500px]">
-            <label
-              htmlFor="default-input"
-              className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
-            >
+            <label htmlFor="default-input" className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
               Nama Anda
             </label>
             <input
@@ -40,10 +37,7 @@ const ContactUs = () => {
           </div>
 
           <div className="mb-6 md:w-[500px]">
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
-            >
+            <label htmlFor="message" className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
               Pesan
             </label>
             <textarea
