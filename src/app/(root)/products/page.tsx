@@ -1,11 +1,34 @@
 "use client";
 import { Hero } from "@/components/Hero";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import ProductCard from "@/components/Card/ProductCard";
 import { Button } from "flowbite-react";
-import SidebarProduct from "@/components/SidebarProduk";
+import SidebarProduct from "@/components/SidebarProduct";
+import { fetchData } from "@/lib/utils";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const Product = (): React.ReactElement => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetchData(`http://localhost:5000/products`);
+      console.log("res:", response);
+      setProducts(response);
+    };
+    fetchProducts();
+  }, []);
+  console.log("prod:", products);
+
+  type Product = {
+    id: number;
+    name: string;
+    price: string;
+  };
+
   return (
     <>
       <Hero title="Product Kami" bread1="Beranda" bread2="Produk" />
@@ -14,18 +37,15 @@ const Product = (): React.ReactElement => {
         <div className="px-5 mt-5  md:w-3/4 sm:full">
           <div className="flex flex-row">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
+              {products.map((product: Product) => (
+                <div key={product.id}>
+                  <ProductCard
+                    data-aos="zoom-in"
+                    name={product.name}
+                    price={product.price}
+                  />
+                </div>
+              ))}
             </div>
           </div>
           <Button color="light" className="mt-24 mx-auto border-primary">

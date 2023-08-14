@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import PopularProductCard from "./Card/PopularProductCard";
+
 const SidebarProduct = () => {
   return (
     <div className="w-1/4 hidden md:block lg:block  ">

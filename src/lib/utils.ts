@@ -4,7 +4,7 @@ import axios, { Axios, AxiosError } from "axios";
 type ApiProps = {
   url: string;
   errResponse: any;
-  data: [] | {};
+  data: [];
 };
 
 export const fetchData = async (
@@ -15,7 +15,8 @@ export const fetchData = async (
 
     console.log(response);
 
-    return response.data;
+    const result = response.data;
+    return result;
   } catch (err: ApiProps["errResponse"]) {
     console.log(err.message);
     return err.message;

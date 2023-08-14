@@ -7,5 +7,5 @@ export const middleware = (request: NextRequest) => {
 };
 
 export const config = {
-  matcher: "/admin/*",
+  matcher: "/admin",
 };
