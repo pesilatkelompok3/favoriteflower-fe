@@ -1,5 +1,3 @@
-"use client";
-
 import Image1 from "~/assets/images/a17c7d559fbb38fe1d2502aaaaaea3db.jpeg";
 import Image2 from "~/assets/images/b8b76b022084829211b00a2bae5ded3a.jpeg";
 import Image3 from "~/assets/images/e8d996ed9ee9115837d4116e0bc2c5d7.jpeg";
