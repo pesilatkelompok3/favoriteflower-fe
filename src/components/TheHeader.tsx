@@ -6,8 +6,8 @@ import { BsWhatsapp } from "react-icons/bs";
 import ContactButton from "./Button";
 import Button from "./Button";
 
-import React, { useState, useEffect } from "react";
-import useToggle from "@/utils/ToggleHook";
+import useToggle from "@/lib/ToggleHook";
+import { useEffect, useState } from "react";
 
 const Navbar = (): React.ReactElement => {
   const [toggle, setToggle] = useToggle();

@@ -14,7 +14,9 @@ const Button = ({
   buttonType: ButtonProps["buttonType"];
   className?: ButtonProps["className"];
   children?: React.ReactNode;
-  clickHandler: (e?: React.MouseEvent) => void;
+  clickHandler?: (
+    e?: React.MouseEvent | React.KeyboardEvent | React.FormEventHandler
+  ) => void;
 }) => {
   return (
     <button type={buttonType} className={className} onClick={clickHandler}>
