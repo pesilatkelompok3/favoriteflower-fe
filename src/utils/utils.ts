@@ -4,15 +4,19 @@ import axios, { Axios, AxiosError } from "axios";
 type ApiProps = {
   url: string;
   errResponse: any;
+  data: [];
 };
 
-export const fetchData = async (url: ApiProps["url"]): Promise<Axios> => {
+export const fetchData = async (
+  url: ApiProps["url"]
+): Promise<ApiProps["data"]> => {
   try {
     const response = await axios.get(url);
 
     console.log(response);
 
-    return response.data;
+    const result = response.data;
+    return result;
   } catch (err: ApiProps["errResponse"]) {
     console.log(err);
     return err.message;
