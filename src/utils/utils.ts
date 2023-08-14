@@ -1,23 +1,44 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import axios, { Axios, AxiosError } from "axios";
 
-interface ResponseData {
-  data: {};
-}
-
-type Props = {
+type ApiProps = {
   url: string;
+  errResponse: any;
 };
 
-export const fetchData = async (url: Props["url"]): Promise<ResponseData> => {
-  const res = await fetch(url);
+export const fetchData = async (url: ApiProps["url"]): Promise<Axios> => {
+  try {
+    const response = await axios.get(url);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    console.log(response);
+
+    return response.data;
+  } catch (err: ApiProps["errResponse"]) {
+    console.log(err);
+    return err.message;
   }
-
-  return res.json();
 };
 
+type PostDataProps = {
+  url: ApiProps["url"];
+  data: {};
+};
+
+export const postData = async ({
+  url,
+  data,
+}: PostDataProps): Promise<Axios> => {
+  try {
+    return await axios.post(url, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (err: ApiProps["errResponse"]) {
+    console.log(err);
+    return err.message;
+  }
+};
 
 export const useToggle = (initialState = false): [boolean, () => void] => {
   const [toggleValue, setToggleValue] = useState(initialState);
