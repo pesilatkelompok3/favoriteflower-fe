@@ -4,7 +4,11 @@ import React from "react";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import ProductCard from "@/components/Card/ProductCard";
 import { Button } from "flowbite-react";
+<<<<<<< HEAD
 import SidebarProduct from "@/components/SidebarProduk";
+=======
+// import Sidebar from "@/components/Sidebar";
+>>>>>>> e35fe958e6f9a04001ed4cd4e837591a9213fbc9
 const Product = (): React.ReactElement => {
   return (
     <>
@@ -33,7 +37,11 @@ const Product = (): React.ReactElement => {
           </Button>
         </div>
         <div className="flex flex-col justify-center">
+<<<<<<< HEAD
           <SidebarProduct />
+=======
+          {/* <Sidebar /> */}
+>>>>>>> e35fe958e6f9a04001ed4cd4e837591a9213fbc9
         </div>
       </div>
     </>
