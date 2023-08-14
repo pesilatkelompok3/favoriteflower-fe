@@ -6,7 +6,7 @@ import { BsClipboardData, BsStar } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { VscAdd } from "react-icons/vsc";
 import Link from "next/link";
-import { useToggle } from "@/utils/utils";
+import { useToggle } from "@/lib/utils";
 
 const Sidebar = (): React.ReactElement => {
   const [toggle, setToggle] = useToggle(true);
@@ -34,20 +34,20 @@ const Sidebar = (): React.ReactElement => {
             FavoriteFlower
           </h1>
 
-          <ul className="mt-4 px-2 md:mx-4">
-            <li className="mb-4 text-white">
+          <ul className="mt-4 px-2 md:ml-2">
+            <li className="mb-4 text-white md:text-lg">
               <Link href={"/admin"} className="hover:text-primary">
                 <BsClipboardData className="inline mr-2" />
                 List Produk
               </Link>
             </li>
-            <li className="mb-4 text-white">
+            <li className="mb-4 text-white md:text-lg">
               <Link href={"/admin/add-product"} className="hover:text-primary">
                 <VscAdd className="inline mr-2" />
                 Tambah Produk
               </Link>
             </li>
-            <li className="mb-4 text-white">
+            <li className="mb-4 text-white md:text-lg">
               <Link href={"/admin/review"} className="hover:text-primary">
                 <BsStar className="inline mr-2" />
                 Tambah Review
