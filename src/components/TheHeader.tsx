@@ -36,8 +36,8 @@ const Navbar = (): React.ReactElement => {
         <div
           className={`${
             scrolling
-              ? "bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
-              : "bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
+              ? "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
+              : "w-full bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
           }`}
         >
           <Link href="/" className="px-4 py-1">
@@ -49,11 +49,11 @@ const Navbar = (): React.ReactElement => {
           <div
             className={`${
               toggle === false
-                ? "hidden md:block md:w-auto md:static px-4"
-                : "w-full md:block md:w-auto absolute md:static px-4"
+                ? "w-full hidden md:block md:w-auto md:static"
+                : "w-full md:block md:w-auto absolute md:static"
             }`}
           >
-            <ul className="flex flex-col bg-gray-900 bg-opacity-80 p-2 mt-[200px] border-black border-t md:bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:items-center">
+            <ul className="w-full flex flex-col bg-gray-900 bg-opacity-80 p-2 mt-[204px] rounded-b-lg pb-3 border-black border-t md:bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:items-center">
               <li className="mb-4 md:mb-0">
                 <Link href="/">Beranda</Link>
               </li>
