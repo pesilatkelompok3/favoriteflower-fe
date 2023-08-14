@@ -44,7 +44,7 @@ export const postData = async ({
   }
 };
 
-export const useToggle = (initialState = false): [boolean, () => void] => {
+export const useToggle = (initialState = false): [boolean | string, () => void] => {
   const [toggleValue, setToggleValue] = useState(initialState);
 
   const toggler = () => {

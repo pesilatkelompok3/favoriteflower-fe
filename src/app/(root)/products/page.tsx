@@ -4,13 +4,8 @@ import React, { useState, useEffect } from "react";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import ProductCard from "@/components/Card/ProductCard";
 import { Button } from "flowbite-react";
-import SidebarProduk from "@/components/SidebarProduk";
-import { fetchData } from "@/utils/utils";
-import Aos from "aos";
-import dotenv from "dotenv";
-
-dotenv.config();
-
+import SidebarProduct from "@/components/SidebarProduct";
+import { fetchData } from "@/lib/utils";
 const Product = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
 
@@ -21,7 +16,6 @@ const Product = (): React.ReactElement => {
       setProducts(response);
     };
     fetchProducts();
-    Aos.init();
   }, []);
   console.log("prod:", products);
   return (
@@ -48,7 +42,7 @@ const Product = (): React.ReactElement => {
           </Button>
         </div>
         <div className="flex flex-col justify-center">
-          <SidebarProduk />
+          <SidebarProduct />
         </div>
       </div>
     </>

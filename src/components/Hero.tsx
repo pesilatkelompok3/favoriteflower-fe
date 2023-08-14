@@ -24,7 +24,7 @@ export const Hero = ({ title, bread1, bread2 }: Props) => {
   });
   return (
     <section className="bg-center bg-no-repeat bg-[url('/assets/images/hero.jpg')] bg-gray-700 bg-blend-multiply -mt-12">
-      <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+      <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-36">
         {title ? (
           <div>
             <h1 className="mb-4 text-4xl font-semibold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
@@ -43,8 +43,7 @@ export const Hero = ({ title, bread1, bread2 }: Props) => {
               FlowerFavorite Juara
             </h1>
             <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-              {text}{" "}
-              <Cursor cursorBlinking cursorStyle="|" cursorColor="#ffaa17" />
+              {text} <Cursor cursorBlinking cursorStyle="|" cursorColor="#ffaa17" />
             </p>
           </div>
         )}
