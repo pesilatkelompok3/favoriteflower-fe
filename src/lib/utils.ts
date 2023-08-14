@@ -4,9 +4,12 @@ import axios, { Axios, AxiosError } from "axios";
 type ApiProps = {
   url: string;
   errResponse: any;
+  data: [] | {};
 };
 
-export const fetchData = async (url: ApiProps["url"]): Promise<Axios> => {
+export const fetchData = async (
+  url: ApiProps["url"]
+): Promise<ApiProps["data"]> => {
   try {
     const response = await axios.get(url);
 
@@ -14,7 +17,7 @@ export const fetchData = async (url: ApiProps["url"]): Promise<Axios> => {
 
     return response.data;
   } catch (err: ApiProps["errResponse"]) {
-    console.log(err);
+    console.log(err.message);
     return err.message;
   }
 };
@@ -27,7 +30,7 @@ type PostDataProps = {
 export const postData = async ({
   url,
   data,
-}: PostDataProps): Promise<Axios> => {
+}: PostDataProps): Promise<PostDataProps["data"]> => {
   try {
     return await axios.post(url, data, {
       headers: {
@@ -40,7 +43,9 @@ export const postData = async ({
   }
 };
 
-export const useToggle = (initialState = false): [boolean | string, () => void] => {
+export const useToggle = (
+  initialState = false
+): [boolean | string, () => void] => {
   const [toggleValue, setToggleValue] = useState(initialState);
 
   const toggler = () => {
