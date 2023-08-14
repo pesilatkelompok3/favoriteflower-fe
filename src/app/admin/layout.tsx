@@ -1,5 +1,3 @@
-"use client";
-
 import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -20,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex">
+        <div className="md:flex">
           <Sidebar />
           <main className="ml-4">{children}</main>
         </div>
