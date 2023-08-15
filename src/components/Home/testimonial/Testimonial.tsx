@@ -1,6 +1,28 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import TestimonialCard from "./TestimonialCard";
 
-export default function Testimonial() {
+const Testimonial = () => {
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardContainerRef.current) {
+      cardContainerRef.current.scrollLeft += 292;
+    }
+  }, []);
+
+  const scrollLeft = () => {
+    if (cardContainerRef.current) {
+      cardContainerRef.current.scrollLeft -= 292;
+    }
+  };
+
+  const scrollRight = () => {
+    if (cardContainerRef.current) {
+      cardContainerRef.current.scrollLeft += 292;
+    }
+  };
   const cardListStyle: React.CSSProperties = {
     scrollbarWidth: "none", // For Firefox
     msOverflowStyle: "none", // For Internet Explorer and Edge
@@ -37,7 +59,13 @@ export default function Testimonial() {
         <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
       </div>
       <div className="w-full h-[372px] relative md:px-28 flex items-center">
-        <div className="w-full h-auto md:p-4 whitespace-nowrap scroll-auto overflow-x-auto" style={cardListStyle}>
+        <div onClick={scrollLeft} className="absolute left-0 top-0 w-12 h-full z-30 md:hidden"></div>
+        <div onClick={scrollRight} className="absolute right-0 top-0 w-12 h-full z-30 md:hidden"></div>
+        <div
+          ref={cardContainerRef}
+          className="w-full h-auto md:p-4 whitespace-nowrap scroll-auto overflow-x-auto md:overflow-x-hidden"
+          style={cardListStyle}
+        >
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
           {datas.map((data) => (
             <TestimonialCard key={data.id} dataKomen={data} />
@@ -46,4 +74,6 @@ export default function Testimonial() {
       </div>
     </div>
   );
-}
+};
+
+export default Testimonial;
