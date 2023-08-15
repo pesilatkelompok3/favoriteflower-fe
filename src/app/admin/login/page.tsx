@@ -2,29 +2,39 @@
 import React, { useState } from "react";
 import { Label, TextInput } from "flowbite-react";
 import Button from "@/components/Button";
+import { postData } from "@/lib/utils";
 
 export default function DefaultForm() {
-  const [notelp, setNotelp] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(notelp);
-    console.log(password);
+    // console.log(notelp);
+    // console.log(password);
+
+    const data = await postData({
+      url: "http://localhost:5000/signin",
+      data: {
+        username,
+        password,
+      },
+    });
+    console.log(data);
   };
   return (
     <div className="w-full h-full flex items-center justify-center">
       <form className="w-1/2 flex max-w-md flex-col gap-4" onSubmit={onSubmit}>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="notelp" value="Nomor Telepon" />
+            <Label htmlFor="username" value="Username" />
           </div>
           <TextInput
             type="text"
-            id="notelp"
-            placeholder="088xxxxxxxxx"
+            id="username"
+            placeholder="Nama anda"
             required
-            value={notelp}
-            onChange={(e) => setNotelp(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>

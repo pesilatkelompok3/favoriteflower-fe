@@ -36,6 +36,7 @@ export const postData = async ({
     return await axios.post(url, data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        // "Accept": "application/json",
       },
     });
   } catch (err: ApiProps["errResponse"]) {

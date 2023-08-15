@@ -5,6 +5,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
+import { Spinner } from "flowbite-react";
 
 // A super simple expandable component.
 
@@ -56,18 +57,21 @@ const ProductTable = (): React.ReactElement => {
     );
   }, [filterText, resetPaginationToggle]);
 
+  const [pending, setPending] = useState(true);
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+    (async () => {
+      const response = await fetchData(`${process.env.baseURL}/products`);
       console.log("res:", response);
       setProducts(response);
-    };
-    fetchProducts();
+      setPending(false);
+    })();
+    // fetchProducts();
   }, []);
   console.log("prod:", products);
   return (
     <DataTable
-      title="Data Produk"
+      title="List Produk"
       subHeader
       subHeaderComponent={subHeaderComponentMemo}
       customStyles={customStyles}
@@ -75,6 +79,13 @@ const ProductTable = (): React.ReactElement => {
       paginationDefaultPage={5}
       sortIcon={sortIcon}
       columns={columns}
+      progressPending={pending}
+      progressComponent={
+        <div className="text-center flex flex-col items-center justify-center gap-4">
+          <Spinner aria-label="Extra large spinner example" className="h-8 w-8" color="purple" />
+          <p className="font-semibold">Sedang memuat data...</p>
+        </div>
+      }
       // data={products.map((row: any) => {
       //   return {
       //     id: row.id,
