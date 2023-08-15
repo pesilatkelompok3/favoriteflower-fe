@@ -6,9 +6,6 @@ import ProductCard from "@/components/Card/ProductCard";
 import { Button } from "flowbite-react";
 import SidebarProduct from "@/components/SidebarProduct";
 import { fetchData } from "@/lib/utils";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const Product = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
@@ -16,12 +13,11 @@ const Product = (): React.ReactElement => {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetchData(`http://localhost:5000/products`);
-      console.log("res:", response);
+
       setProducts(response);
     };
     fetchProducts();
   }, []);
-  console.log("prod:", products);
 
   type Product = {
     id: number;
@@ -39,11 +35,7 @@ const Product = (): React.ReactElement => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {products.map((product: Product) => (
                 <div key={product.id}>
-                  <ProductCard
-                    data-aos="zoom-in"
-                    name={product.name}
-                    price={product.price}
-                  />
+                  <ProductCard name={product.name} price={product.price} />
                 </div>
               ))}
             </div>

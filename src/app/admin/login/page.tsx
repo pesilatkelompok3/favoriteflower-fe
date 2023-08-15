@@ -11,6 +11,10 @@ export default function DefaultForm() {
     console.log(notelp);
     console.log(password);
   };
+
+  const onNoteChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNotelp(e.target.value);
+  };
   return (
     <div className="w-full h-full flex items-center justify-center">
       <form className="w-1/2 flex max-w-md flex-col gap-4" onSubmit={onSubmit}>
@@ -24,7 +28,7 @@ export default function DefaultForm() {
             placeholder="088xxxxxxxxx"
             required
             value={notelp}
-            onChange={(e) => setNotelp(e.target.value)}
+            onChange={onNoteChangeHandler}
           />
         </div>
         <div>

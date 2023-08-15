@@ -1,8 +1,28 @@
 "use client";
-import React from "react";
-import PopularProductCard from "./Card/PopularProductCard";
+import React, { useState, useEffect } from "react";
+import { fetchData } from "@/lib/utils";
+import ProductCard from "@/components/Home/productUs/ProductCard";
 
 const SidebarProduct = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetchData(`http://localhost:5000/products`);
+      setProducts(response);
+    };
+    fetchProducts();
+  }, []);
+
+  const recentProduct: Product[] = products.sort((a: number, b: number) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+  type Product = {
+    id: number;
+    name: string;
+    price: string;
+  };
   return (
     <div className="w-1/4 hidden md:block lg:block  ">
       <div className="border-b-4 border-primary pb-2 w-56">
@@ -22,10 +42,13 @@ const SidebarProduct = () => {
           </h2>
         </div>
         <div className="mx-auto mt-8 w-56">
-          <PopularProductCard />
-          <PopularProductCard />
-          <PopularProductCard />
-          <PopularProductCard />
+          {recentProduct.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+            />
+          ))}
         </div>
       </div>
     </div>
