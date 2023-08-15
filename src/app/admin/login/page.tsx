@@ -21,6 +21,7 @@ export default function DefaultForm() {
     });
     console.log(data);
   };
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <form className="w-1/2 flex max-w-md flex-col gap-4" onSubmit={onSubmit}>
