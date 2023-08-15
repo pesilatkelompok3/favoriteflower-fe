@@ -55,3 +55,49 @@ export const useToggle = (
 
   return [toggleValue, toggler];
 };
+
+export type TableRowProps = any;
+
+export const columns = [
+  {
+    name: "Nama Produk",
+    selector: (row: TableRowProps) => row.title,
+    sortable: true,
+  },
+  {
+    name: "Jenis Produk",
+    selector: (row: TableRowProps) => row.category,
+    sortable: true,
+  },
+  {
+    name: "Harga",
+    selector: (row: TableRowProps) => row.price,
+    sortable: true,
+  },
+  {
+    name: "Deskripsi",
+    selector: (row: TableRowProps) => row.description,
+    sortable: true,
+  },
+];
+
+export const customStyles = {
+  rows: {
+    style: {
+      minHeight: "72px", // override the row height
+    },
+  },
+  headCells: {
+    style: {
+      fontWeight: "bold",
+      paddingLeft: "8px", // override the cell padding for head cells
+      paddingRight: "8px",
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for data cells
+      paddingRight: "8px",
+    },
+  },
+};

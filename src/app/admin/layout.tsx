@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="md:flex">
+        <div className="flex flex-col md:flex-row">
           <Sidebar />
           <main className="ml-4 w-full h-screen">{children}</main>
           {/* <main>{children}</main> */}
