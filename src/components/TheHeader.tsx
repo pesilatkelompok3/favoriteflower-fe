@@ -6,7 +6,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import ContactButton from "./Button";
 import Button from "./Button";
 
-import useToggle from "@/lib/ToggleHook";
+import { useToggle } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 const Navbar = (): React.ReactElement => {
@@ -41,9 +41,15 @@ const Navbar = (): React.ReactElement => {
           }`}
         >
           <Link href="/" className="px-4 py-1">
-            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">FavoriteFlower</span>
+            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">
+              FavoriteFlower
+            </span>
           </Link>
-          <Button className="relative z-20" buttonType="button" clickHandler={setToggle}>
+          <Button
+            className="relative z-20"
+            buttonType="button"
+            clickHandler={setToggle}
+          >
             <RxHamburgerMenu className="cursor-pointer h-[24px] w-[24px] mx-2 md:hidden" />
           </Button>
           <div
@@ -54,13 +60,13 @@ const Navbar = (): React.ReactElement => {
             }`}
           >
             <ul className="w-full flex flex-col bg-gray-900 bg-opacity-80 p-2 mt-[204px] rounded-b-lg pb-3 border-black border-t md:bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:items-center">
-              <li className="mb-4 md:mb-0">
+              <li className="mb-4 md:mb-0 hover:text-primary text-lg">
                 <Link href="/">Beranda</Link>
               </li>
-              <li className="mb-4 md:mb-0">
+              <li className="mb-4 md:mb-0 hover:text-primary text-lg">
                 <Link href="/about">Tentang Kami</Link>
               </li>
-              <li className="mb-4 md:mb-0">
+              <li className="mb-4 md:mb-0 hover:text-primary text-lg">
                 <Link href="/products">Produk</Link>
               </li>
               <li>
