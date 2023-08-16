@@ -1,13 +1,17 @@
 import ProductTable from "@/components/ProductTable";
 import ButtonModal from "@/components/ButtonModal";
+// import middleware from "@/middleware";
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <>
-      <div className="flex flex-col md:mt-4 w-2/3 gap-2">
+      <div className="flex flex-col md:mt-2 gap-2 mx-4">
         <ProductTable />
         <ButtonModal />
       </div>
     </>
   );
 }
+
+export default Dashboard;
+// export default middleware(Dashboard);
