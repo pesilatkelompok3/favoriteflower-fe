@@ -1,11 +1,11 @@
 "use client";
-import { Hero } from "@/components/Hero";
 import React, { useState, useEffect } from "react";
+import { fetchData } from "@/lib/utils";
+import { Button } from "flowbite-react";
+import { Hero } from "@/components/Hero";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import ProductCard from "@/components/Card/ProductCard";
-import { Button } from "flowbite-react";
 import SidebarProduct from "@/components/SidebarProduct";
-import { fetchData } from "@/lib/utils";
 
 const Product = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
@@ -35,7 +35,7 @@ const Product = (): React.ReactElement => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {products.map((product: Product) => (
                 <div key={product.id}>
-                  <ProductCard name={product.name} price={product.price} />
+                  <ProductCard name={product.name} price={product.price} id={product.id} />
                 </div>
               ))}
             </div>
