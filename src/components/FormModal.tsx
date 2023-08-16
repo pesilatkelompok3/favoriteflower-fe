@@ -2,7 +2,7 @@
 import { Label, Modal, TextInput, Textarea, FileInput } from "flowbite-react";
 import Button from "./Button";
 import { postData } from "@/lib/utils";
-import { ChangeEventHandler, SetStateAction, useState } from "react";
+import { useState } from "react";
 
 type FormModalProps = {
   openModal: any;
@@ -17,21 +17,22 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) => {
   const [selectedFile, setSelectedFile] = useState("");
   //   const [image, setImage] = useState("");
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e: any) => {
-    const file = e.target.files[0];
-    setSelectedFile(file);
-  };
+  // const handleChange: ChangeEventHandler<HTMLInputElement> = (e: any) => {
+  //   const file = e.target;
+  //   console.log(file);
+  //   setSelectedFile(file);
+  // };
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const formData = new FormData();
 
-    formData.append("product", product);
+    formData.append("name", product);
     formData.append("category", category);
     formData.append("price", price);
     formData.append("description", description);
-    formData.append("image", selectedFile);
+    formData.append("file", selectedFile);
 
     console.log(selectedFile);
 
@@ -39,6 +40,8 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) => {
       url: "http://localhost:5000/products",
       data: formData,
     });
+    
+    window.location.reload();
   };
 
   return (
@@ -111,14 +114,14 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) => {
             </div>
             <div className="max-w-md" id="fileUpload">
               <div className="mb-2 block mt-2">
-                <Label htmlFor="image" value="Gambar Produk" />
+                <Label htmlFor="file" value="Gambar Produk" />
               </div>
               <FileInput
                 helperText="Tambahkan gambar produk untuk informasi pelanggan."
-                accept="image"
-                name="image"
-                onChange={(e) => handleChange(e)}
-                id="image"
+                accept="file"
+                name="file"
+                onChange={(e: any) => setSelectedFile(e.target.files[0])}
+                id="file"
               />
             </div>
             <Button

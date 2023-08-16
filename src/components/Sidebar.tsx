@@ -29,7 +29,7 @@ const Sidebar = (): React.ReactElement => {
         className={
           toggle
             ? "fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800"
-            : "fixed md:static md:h-[150vh] z-40 h-screen p-4 overflow-y-auto transition-transform w-64 bg-gray-800 dark:bg-gray-800"
+            : "fixed z-40 h-screen p-4 overflow-y-auto transition-transform w-64 bg-gray-800 dark:bg-gray-800"
         }
         tabIndex={-1}
         aria-labelledby="drawer-backdrop-label"
@@ -72,7 +72,7 @@ const Sidebar = (): React.ReactElement => {
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                href="/"
+                href="/admin"
                 className="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group"
               >
                 <BsClipboardData />
@@ -81,20 +81,11 @@ const Sidebar = (): React.ReactElement => {
             </li>
             <li>
               <Link
-                href="/"
+                href="/admin/add-product"
                 className="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group"
               >
                 <VscAdd />
                 <span className="ml-3">Tambah Produk</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="flex items-center p-2 text-white rounded-lg dark:hover:bg-gray-700 group hover:text-primary"
-              >
-                <BsStar className="h-4 w-4 font-bold" />
-                <span className="ml-3">Tambah Review</span>
               </Link>
             </li>
           </ul>

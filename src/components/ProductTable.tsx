@@ -5,9 +5,8 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-import { Spinner } from "flowbite-react";
-
-// A super simple expandable component.
+import { Spinner, Avatar } from "flowbite-react";
+// import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
@@ -76,32 +75,32 @@ const ProductTable = (): React.ReactElement => {
       subHeaderComponent={subHeaderComponentMemo}
       customStyles={customStyles}
       pagination
-      paginationDefaultPage={5}
       sortIcon={sortIcon}
       columns={columns}
       progressPending={pending}
       progressComponent={
         <div className="text-center flex flex-col items-center justify-center gap-4">
-          <Spinner aria-label="Extra large spinner example" className="h-8 w-8" color="purple" />
+          <Spinner
+            aria-label="Extra large spinner example"
+            className="h-8 w-8"
+            color="purple"
+          />
           <p className="font-semibold">Sedang memuat data...</p>
         </div>
       }
-      // data={products.map((row: any) => {
-      //   return {
-      //     id: row.id,
-      //     title: row.name,
-      //     category: row.category,
-      //     description: row.description,
-      //     price: `Rp. ${row.price}`,
-      //   };
-      // })}
       data={filteredItems.map((row: TableRowProps) => {
+        const { name, category, description, price, url } = row;
+
+        const imageComponent = (
+          <Avatar img={url} size="lg" className="text-center" />
+        );
+
         return {
-          id: row.id,
-          title: row.name,
-          category: row.category,
-          description: row.description,
-          price: `Rp. ${row.price}`,
+          image: imageComponent,
+          title: name,
+          category,
+          description,
+          price: `Rp. ${price}`,
         };
       })}
     />

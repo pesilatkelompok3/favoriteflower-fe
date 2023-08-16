@@ -33,14 +33,18 @@ export const postData = async ({
   data,
 }: PostDataProps): Promise<PostDataProps["data"]> => {
   try {
-    return await axios.post(url, data, {
+    const postData = await axios.post(url, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         // "Accept": "application/json",
       },
     });
+
+    alert("Data Berhasil Ditambahkan.");
+    return postData;
   } catch (err: ApiProps["errResponse"]) {
     console.log(err);
+    alert("Data gagal ditambahkan.");
     return err.message;
   }
 };
@@ -60,6 +64,11 @@ export const useToggle = (
 export type TableRowProps = any;
 
 export const columns = [
+  {
+    name: "Gambar Produk",
+    selector: (row: TableRowProps) => row.image,
+    sortable: true,
+  },
   {
     name: "Nama Produk",
     selector: (row: TableRowProps) => row.title,
@@ -85,7 +94,7 @@ export const columns = [
 export const customStyles = {
   rows: {
     style: {
-      minHeight: "72px", // override the row height
+      minHeight: "65px", // override the row height
     },
   },
   headCells: {
@@ -99,6 +108,7 @@ export const customStyles = {
     style: {
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
+      fontSize: "14px",
     },
   },
 };
