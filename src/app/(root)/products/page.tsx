@@ -1,11 +1,12 @@
 "use client";
-import { Hero } from "@/components/Hero";
 import React, { useState, useEffect } from "react";
+import { fetchData } from "@/lib/utils";
+
+import { Hero } from "@/components/Hero";
 import ProductHead from "@/components/Home/productUs/ProductHead";
-// import ProductCard from "@/components/Card/ProductCard";
+
 import Loading from "@/components/Loading";
 import SidebarProduct from "@/components/SidebarProduct";
-import { fetchData } from "@/lib/utils";
 import dynamic from "next/dynamic";
 
 const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {

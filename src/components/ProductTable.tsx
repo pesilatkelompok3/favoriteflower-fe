@@ -3,10 +3,11 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns } from "@/lib/utils";
+import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-
-// A super simple expandable component.
+import { Spinner, Avatar, Button } from "flowbite-react";
+import { type } from "os";
+// import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
@@ -15,10 +16,53 @@ const ProductTable = (): React.ReactElement => {
 
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
+  useEffect(() => {
+    (async () => {
+      const response = await fetchData(`${process.env.baseURL}/products`);
+      console.log("res:", response);
+      setProducts(response);
+      setPending(false);
+    })();
+  }, []);
+
   const filteredItems = products.filter(
     (item: any) =>
       item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
   );
+
+  const filteredId = products.findIndex((item: any) => item === item.id);
+
+  const imageElement = (url: string) => {
+    return <Avatar img={url} size="lg" className="text-center" />;
+  };
+
+  const ActionElement = (
+    <div className="flex gap-2">
+      <Button className="bg-blue-500 text-white">Edit</Button>
+      <Button
+        className="bg-red-500 text-white"
+        onClick={() => console.log("Hello World")}
+      >
+        Hapus
+      </Button>
+    </div>
+  );
+
+  const dataProduct = filteredItems.map((row: TableRowProps) => {
+    const { name, category, description, price, url, id } = row;
+
+    return {
+      id,
+      image: imageElement(url),
+      title: name,
+      category,
+      description,
+      price: `Rp. ${price}`,
+      action: ActionElement,
+    };
+  });
+
+  const [pending, setPending] = useState(true);
 
   const sortIcon = <LuArrowDownUp />;
 
@@ -42,57 +86,41 @@ const ProductTable = (): React.ReactElement => {
             onChange={(e) => setFilterText(e.target.value)}
             value={filterText}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search branch name..."
+            placeholder="Cari berdasarkan nama..."
           />
         </div>
         <button
           type="button"
-          className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="p-2.5 ml-2 text-sm font-medium text-white bg-red-600 rounded-md hover:text-opacity-70"
           onClick={handleClear}
         >
-          Clear
+          Hapus
         </button>
       </form>
     );
   }, [filterText, resetPaginationToggle]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
-      console.log("res:", response);
-      setProducts(response);
-    };
-    fetchProducts();
-  }, []);
-  console.log("prod:", products);
   return (
     <DataTable
-      title="Data Produk"
+      title="List Produk"
       subHeader
       subHeaderComponent={subHeaderComponentMemo}
       customStyles={customStyles}
       pagination
-      paginationDefaultPage={5}
       sortIcon={sortIcon}
       columns={columns}
-      // data={products.map((row: any) => {
-      //   return {
-      //     id: row.id,
-      //     title: row.name,
-      //     category: row.category,
-      //     description: row.description,
-      //     price: `Rp. ${row.price}`,
-      //   };
-      // })}
-      data={filteredItems.map((row: TableRowProps) => {
-        return {
-          id: row.id,
-          title: row.name,
-          category: row.category,
-          description: row.description,
-          price: `Rp. ${row.price}`,
-        };
-      })}
+      progressPending={pending}
+      progressComponent={
+        <div className="text-center flex flex-col items-center justify-center gap-4">
+          <Spinner
+            aria-label="Extra large spinner example"
+            className="h-8 w-8"
+            color="purple"
+          />
+          <p className="font-semibold">Sedang memuat data...</p>
+        </div>
+      }
+      data={dataProduct}
     />
   );
 };
