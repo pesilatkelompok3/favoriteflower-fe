@@ -1,7 +1,8 @@
 import ProductTable from "@/components/ProductTable";
 import ButtonModal from "@/components/ButtonModal";
+import isAuthenticated from "@/middleware/auth";
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <>
       <div className="flex flex-col md:mt-4 w-2/3 gap-2">
@@ -11,3 +12,4 @@ export default function Dashboard() {
     </>
   );
 }
+export default isAuthenticated(Dashboard);
