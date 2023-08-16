@@ -37,7 +37,7 @@ const Product = (): React.ReactElement => {
   };
 
   type Product = {
-    id: number;
+    id: string;
     name: string;
     price: string;
     description: string;
@@ -78,6 +78,7 @@ const Product = (): React.ReactElement => {
               {filterSearchProduct.map((product: Product) => (
                 <ProductCard
                   key={product.id}
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   description={product.description}
