@@ -3,9 +3,10 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns } from "@/lib/utils";
+import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-import { Spinner, Avatar } from "flowbite-react";
+import { Spinner, Avatar, Button } from "flowbite-react";
+import { type } from "os";
 // import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
@@ -15,10 +16,53 @@ const ProductTable = (): React.ReactElement => {
 
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
+  useEffect(() => {
+    (async () => {
+      const response = await fetchData(`${process.env.baseURL}/products`);
+      console.log("res:", response);
+      setProducts(response);
+      setPending(false);
+    })();
+  }, []);
+
   const filteredItems = products.filter(
     (item: any) =>
       item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
   );
+
+  const filteredId = products.findIndex((item: any) => item === item.id);
+
+  const imageElement = (url: string) => {
+    return <Avatar img={url} size="lg" className="text-center" />;
+  };
+
+  const ActionElement = (
+    <div className="flex gap-2">
+      <Button className="bg-blue-500 text-white">Edit</Button>
+      <Button
+        className="bg-red-500 text-white"
+        onClick={() => console.log("Hello World")}
+      >
+        Hapus
+      </Button>
+    </div>
+  );
+
+  const dataProduct = filteredItems.map((row: TableRowProps) => {
+    const { name, category, description, price, url, id } = row;
+
+    return {
+      id,
+      image: imageElement(url),
+      title: name,
+      category,
+      description,
+      price: `Rp. ${price}`,
+      action: ActionElement,
+    };
+  });
+
+  const [pending, setPending] = useState(true);
 
   const sortIcon = <LuArrowDownUp />;
 
@@ -42,32 +86,20 @@ const ProductTable = (): React.ReactElement => {
             onChange={(e) => setFilterText(e.target.value)}
             value={filterText}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search branch name..."
+            placeholder="Cari berdasarkan nama..."
           />
         </div>
         <button
           type="button"
-          className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="p-2.5 ml-2 text-sm font-medium text-white bg-red-600 rounded-md hover:text-opacity-70"
           onClick={handleClear}
         >
-          Clear
+          Hapus
         </button>
       </form>
     );
   }, [filterText, resetPaginationToggle]);
 
-  const [pending, setPending] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
-      console.log("res:", response);
-      setProducts(response);
-      setPending(false);
-    })();
-    // fetchProducts();
-  }, []);
-  console.log("prod:", products);
   return (
     <DataTable
       title="List Produk"
@@ -88,21 +120,7 @@ const ProductTable = (): React.ReactElement => {
           <p className="font-semibold">Sedang memuat data...</p>
         </div>
       }
-      data={filteredItems.map((row: TableRowProps) => {
-        const { name, category, description, price, url } = row;
-
-        const imageComponent = (
-          <Avatar img={url} size="lg" className="text-center" />
-        );
-
-        return {
-          image: imageComponent,
-          title: name,
-          category,
-          description,
-          price: `Rp. ${price}`,
-        };
-      })}
+      data={dataProduct}
     />
   );
 };

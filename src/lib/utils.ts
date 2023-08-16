@@ -49,6 +49,17 @@ export const postData = async ({
   }
 };
 
+export const deleteData = async (url: ApiProps["url"]) => {
+  try {
+    const deleteData = await axios.delete(url);
+    alert("Data Berhasil Dihapus.");
+    return deleteData;
+  } catch (err: ApiProps["errResponse"]) {
+    alert("Data gagal dihapus.");
+    return err.message;
+  }
+};
+
 export const useToggle = (
   initialState = false
 ): [boolean | string, () => void] => {
@@ -88,6 +99,10 @@ export const columns = [
     name: "Deskripsi",
     selector: (row: TableRowProps) => row.description,
     sortable: true,
+  },
+  {
+    name: "Aksi",
+    selector: (row: TableRowProps) => row.action,
   },
 ];
 
