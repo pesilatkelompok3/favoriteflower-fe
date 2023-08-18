@@ -5,7 +5,7 @@ import { Button } from "flowbite-react";
 import FormModal from "@/components/FormModal";
 
 import { useState } from "react";
-export default function FormElements() {
+export default function ButtonModal() {
   const [openModal, setOpenModal] = useState<string | undefined>();
   const props = { openModal, setOpenModal };
 
