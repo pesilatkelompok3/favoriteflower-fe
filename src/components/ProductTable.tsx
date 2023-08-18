@@ -6,8 +6,6 @@ import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
 import { Spinner, Avatar, Button } from "flowbite-react";
-import { type } from "os";
-// import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);

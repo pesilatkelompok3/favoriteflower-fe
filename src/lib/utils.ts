@@ -23,6 +23,10 @@ export const fetchData = async (
   }
 };
 
+export const checkUserLoggedIn = () => {
+  return true;
+};
+
 type PostDataProps = {
   url: ApiProps["url"];
   data: {};
@@ -101,7 +105,7 @@ export const columns = [
     sortable: true,
   },
   {
-    name: "Aksi",
+    // name: "Aksi",
     selector: (row: TableRowProps) => row.action,
   },
 ];
