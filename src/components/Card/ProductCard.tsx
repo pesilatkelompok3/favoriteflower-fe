@@ -9,38 +9,44 @@ type Product = {
   id: string;
   name: string;
   price: string;
-  description: string;
+  category: string;
 };
 
-const ProductCard = ({ id, name, price, description }: Product) => {
+const ProductCard = ({ id, name, price, category }: Product) => {
   return (
     <>
-      <div className="relative w-44 lg:w-full lg:h-3/4 bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden">
-        <Link
-          href={`/products/${id}`}
-          className="block transition-transform duration-300 hover:scale-95"
-        >
+      <div className="relative w-44 h-full lg:w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
+        <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
-            className="rounded-lg h-36 lg:h-full m-auto"
+            className="rounded-lg h-36 lg:h-full m-auto "
             src={ImageCard}
             alt="image"
           />
-        </Link>
-        <div className="p-5 absolute bottom-0 left-0 right-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-white">
-          <Link href={`/products/${id}`} className="block">
-            <h5 className="mb-2 text-md md:text-lg lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        </div>
+        {/* <div className="absolute bottom-5 left-3 right-0">
+          <h5 className="lg:w-3/4 hidden lg:block font-semibold  lg:text-xl">
+            {name}
+          </h5>
+        </div> */}
+
+        <div className="p-2 lg:p-5 absolute bottom-0 left-0 right-0 bg-base ">
+          <div className="block ">
+            <h5 className="mb-2  md:text-lg  font-bold tracking-tight text-gray-900 hover:text-primary truncate">
               {name}
             </h5>
-          </Link>
-          <p className="mb-3 truncate">{description}</p>
+          </div>
+          <p className="mb-3 truncate">{category}</p>
           <div className="flex justify-between  items-center">
             <p className="font-medium ">{price}</p>
-            <button className="md:text-md bg-primary rounded-xl text-white p-2 lg:px-3">
+            <Link
+              href={`/products/${id}`}
+              className="md:text-md bg-primary rounded-xl text-white p-2 lg:px-3 hover:text-black"
+            >
               Pesan
-            </button>
+            </Link>
           </div>
         </div>
-        <div>
+        <div className="lg:hidden">
           <h5 className="font-semibold text-sm pt-2 pb-2">{name}</h5>
           <p className="font-medium">{price}</p>
         </div>

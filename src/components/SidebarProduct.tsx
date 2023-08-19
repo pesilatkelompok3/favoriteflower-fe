@@ -4,7 +4,7 @@ import { fetchData } from "@/lib/utils";
 import ProductCard from "@/components/Home/productUs/ProductCard";
 import Link from "next/link";
 
-const SidebarProduct = () => {
+const SidebarProduct = ({ category }: any) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const SidebarProduct = () => {
   });
 
   type Product = {
-    id: number;
+    id: string;
     name: string;
     price: string;
     category: string;
@@ -55,7 +55,7 @@ const SidebarProduct = () => {
       <div className="w-56 flex flex-col text-end gap-4 text-lg lg:text-xl font-semibold mt-8">
         {filteredProducts.map((product: Product) => (
           <Link
-            href={`/product/category=?${product.category}`}
+            href={`/products?category=${product.category}`}
             key={product.id}
             className="hover:text-primary"
           >
@@ -71,11 +71,7 @@ const SidebarProduct = () => {
         </div>
         <div className="mx-auto mt-8 w-56">
           {recentProduct.slice(0, 6).map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-            />
+            <ProductCard key={product.id} id={product.id} name={product.name} />
           ))}
         </div>
       </div>
