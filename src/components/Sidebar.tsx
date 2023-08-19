@@ -15,8 +15,8 @@ const Sidebar = (): React.ReactElement => {
         <button
           type="button"
           className={toggle ? "block my-4 mx-2 md:hidden" : "hidden"}
-          data-drawer-target="drawer-backdrop"
-          data-drawer-show="drawer-backdrop"
+          // data-drawer-target="drawer-backdrop"
+          // data-drawer-show="drawer-backdrop"
           // data-drawer-backdrop={setToggle()}
           onClick={setToggle}
         >

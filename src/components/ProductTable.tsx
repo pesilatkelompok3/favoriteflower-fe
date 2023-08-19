@@ -17,11 +17,15 @@ const ProductTable = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const response = await fetchData(`${process.env.baseURL}/products`);
-      console.log("res:", response);
       setProducts(response);
       setPending(false);
     })();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    const response = await deleteData(`http://localhost:5000/products/${id}`);
+    setProducts(products.filter((item: any) => item.id !== id));
+  };
 
   const filteredItems = products.filter(
     (item: any) =>
@@ -34,12 +38,12 @@ const ProductTable = (): React.ReactElement => {
     return <Avatar img={url} size="lg" className="text-center" />;
   };
 
-  const ActionElement = (
+  const ActionElement = (id: string) => (
     <div className="flex gap-2">
       <Button className="bg-blue-500 text-white">Edit</Button>
       <Button
         className="bg-red-500 text-white"
-        onClick={() => console.log("Hello World")}
+        onClick={() => handleDelete(id)}
       >
         Hapus
       </Button>
@@ -56,7 +60,7 @@ const ProductTable = (): React.ReactElement => {
       category,
       description,
       price: `Rp. ${price}`,
-      action: ActionElement,
+      action: ActionElement(id),
     };
   });
 
