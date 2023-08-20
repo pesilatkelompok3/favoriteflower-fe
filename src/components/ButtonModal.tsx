@@ -5,7 +5,7 @@ import { Button } from "flowbite-react";
 import FormModal from "@/components/FormModal";
 
 import { useState } from "react";
-export default function FormElements() {
+export default function ButtonModal() {
   const [openModal, setOpenModal] = useState<string | undefined>();
   const props = { openModal, setOpenModal };
 
@@ -13,7 +13,7 @@ export default function FormElements() {
     <>
       <Button
         onClick={() => props.setOpenModal("form-elements")}
-        className="bg-primary self-end my-8"
+        className="bg-primary self-end my-8 md:mr-4"
       >
         Tambah Produk Baru
       </Button>

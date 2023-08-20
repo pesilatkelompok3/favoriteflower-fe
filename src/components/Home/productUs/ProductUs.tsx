@@ -72,7 +72,7 @@ export default function ProductUs() {
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
           {products.slice(0, maxDisplayedProducts).map((product: Product) => (
             <Link href={`/products/${product.id}`} key={product.id}>
-              <ProductCard name={product.name} price=""/>
+              <ProductCard id={product.id} name={product.name} price=""/>
             </Link>
           ))}
         </div>

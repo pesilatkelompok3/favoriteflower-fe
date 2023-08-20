@@ -33,11 +33,11 @@ export default function TheFooter(): ReactElement {
             </div>
           </div>
         </div>
-        <Footer.Copyright
-          by="❤ WeebzDev XD"
-          href="#"
-          year={new Date().getFullYear()}
-        />
+      <Footer.Copyright
+        by="❤ WeebzDev XD"
+        href="#"
+        year={new Date().getFullYear()}
+      />
       </div>
     </Footer>
   );

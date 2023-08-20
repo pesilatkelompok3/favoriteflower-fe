@@ -5,26 +5,33 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-import { Spinner, Avatar, Button } from "flowbite-react";
-import { type } from "os";
+
+import Button from "./Button";
+import { Spinner, Avatar } from "flowbite-react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-// import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
 
   const [filterText, setFilterText] = useState("");
 
+  const router = useRouter();
+
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
   useEffect(() => {
     (async () => {
       const response = await fetchData(`${process.env.baseURL}/products`);
-      console.log("res:", response);
       setProducts(response);
       setPending(false);
     })();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    await deleteData(`http://localhost:5000/products/${id}`);
+    setProducts(products.filter((item: any) => item.id !== id));
+  };
 
   const filteredItems = products.filter(
     (item: any) =>
@@ -40,12 +47,17 @@ const ProductTable = (): React.ReactElement => {
       </div>
     )};
 
-  const ActionElement = (
-    <div className="flex gap-2">
-      <Button className="bg-blue-500 text-white">Edit</Button>
+  const ActionElement = (id: string) => (
+    <div className="flex gap-2 items-center">
+      {/* <Link href={`/admin/edit/${id}`}> */}
+      <Button buttonType="button" className="bg-blue-500 text-white h-8 w-20 rounded-md" clickHandler={() => router.push(`/admin/edit/${id}`)}>
+        Edit
+      </Button>
+      {/* </Link> */}
       <Button
-        className="bg-red-500 text-white"
-        onClick={() => console.log("Hello World")}
+        buttonType="button"
+        className="bg-red-500 text-white h-8 w-20 rounded-md"
+        clickHandler={() => handleDelete(id)}
       >
         Hapus
       </Button>
@@ -62,7 +74,7 @@ const ProductTable = (): React.ReactElement => {
       category,
       description,
       price: formatPrice(price),
-      action: ActionElement,
+      action: ActionElement(id),
     };
   });
 

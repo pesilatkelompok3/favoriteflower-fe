@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { Suspense, useEffect, useState } from "react";
 import { fetchData, formatPrice } from "@/lib/utils";
@@ -91,7 +91,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.slice(0, maxDisplayedProducts).map((product: Product) => (
             <div key={product.id}>
-              <ProductCard name={product.name} description={product.description} price={formatPrice(product.price)} id={product.id} />
+              <ProductCard name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} />
             </div>
           ))}
         </div>

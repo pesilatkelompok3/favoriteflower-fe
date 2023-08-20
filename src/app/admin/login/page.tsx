@@ -44,7 +44,7 @@ export default function DefaultForm() {
           </div>
           <TextInput
             type="password"
-            id="password1"
+            id="password"
             placeholder="Masukkan Password..."
             required
             value={password}

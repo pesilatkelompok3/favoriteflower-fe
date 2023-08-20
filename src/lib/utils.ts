@@ -23,6 +23,10 @@ export const fetchData = async (
   }
 };
 
+export const checkUserLoggedIn = () => {
+  return true;
+};
+
 type PostDataProps = {
   url: ApiProps["url"];
   data: {};
@@ -55,7 +59,7 @@ export const deleteData = async (url: ApiProps["url"]) => {
     alert("Data Berhasil Dihapus.");
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {
-    alert("Data gagal dihapus.");
+    alert(err.message);
     return err.message;
   }
 };
@@ -101,7 +105,7 @@ export const columns = [
     sortable: true,
   },
   {
-    name: "Aksi",
+    // name: "Aksi",
     selector: (row: TableRowProps) => row.action,
   },
 ];
@@ -126,6 +130,22 @@ export const customStyles = {
       fontSize: "14px",
     },
   },
+};
+
+export type ProductParams = {
+  params: {
+    productId: string;
+  };
+};
+
+export type Product = {
+  id: number | string;
+  name: string;
+  price: string;
+  category: string;
+  description: string;
+  image?: string;
+  url?: string;
 };
 
 export const formatPrice = (price: string) => {

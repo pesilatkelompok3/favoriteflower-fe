@@ -4,7 +4,7 @@ import { fetchData, formatPrice } from "@/lib/utils";
 
 import { Hero } from "@/components/Hero";
 import ProductHead from "@/components/Home/productUs/ProductHead";
-
+import { useSearchParams } from "next/navigation";
 import Loading from "@/components/Loading";
 import SidebarProduct from "@/components/SidebarProduct";
 import dynamic from "next/dynamic";
@@ -23,10 +23,15 @@ const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
 });
 
 const Product = (): React.ReactElement => {
+  const searchParams = useSearchParams();
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, onSearch] = useState("");
   const [sort, onSort] = useState<string>("");
+
+  const category = searchParams.get("category");
+  console.log("cat:", category);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,10 +56,17 @@ const Product = (): React.ReactElement => {
     name: string;
     price: string;
     description: string;
+    category: string;
     loading: boolean;
   };
 
-  const filterSortProduct = products.sort((a: any, b: any) => {
+  const filterByCategory = products.filter((product: Product) => {
+    if (category) return product.category === category;
+
+    return products;
+  });
+
+  const filterSortProduct = filterByCategory.sort((a: any, b: any) => {
     if (sort === "ASC") {
       return a.name.localeCompare(b.name);
     } else if (sort === "DESC") {
@@ -82,23 +94,21 @@ const Product = (): React.ReactElement => {
         onSort={onSortHandler}
       />
       <div className="flex justify-around w-screen md:mt-24">
-        <div className="px-5 mt-5  md:w-3/4 sm:full">
-          <div className="flex flex-row">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {filterSearchProduct.map((product: Product) => (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  price={formatPrice(product.price)}
-                  description={product.description}
-                />
-              ))}
-            </div>
+        <div className="px-5 md:w-3/4 sm:w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {filterSearchProduct.map((product: Product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={formatPrice(product.price)}
+                category={product.category}
+              />
+            ))}
           </div>
         </div>
         <div className="flex flex-col ">
-          <SidebarProduct />
+          <SidebarProduct category={category} />
         </div>
       </div>
     </>
