@@ -6,6 +6,7 @@ import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
 import { Spinner, Avatar, Button } from "flowbite-react";
+import Link from "next/link";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
@@ -23,7 +24,7 @@ const ProductTable = (): React.ReactElement => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const response = await deleteData(`http://localhost:5000/products/${id}`);
+    await deleteData(`http://localhost:5000/products/${id}`);
     setProducts(products.filter((item: any) => item.id !== id));
   };
 
@@ -39,8 +40,10 @@ const ProductTable = (): React.ReactElement => {
   };
 
   const ActionElement = (id: string) => (
-    <div className="flex gap-2">
-      <Button className="bg-blue-500 text-white">Edit</Button>
+    <div className="flex gap-2 items-center">
+      <Link href={`/admin/edit/${id}`}>
+        <Button className="bg-blue-500 text-white">Edit</Button>
+      </Link>
       <Button
         className="bg-red-500 text-white"
         onClick={() => handleDelete(id)}

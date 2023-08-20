@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { fetchData } from "@/lib/utils";
@@ -51,7 +51,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
 
   return (
     <div>
-      {product&& (
+      {product && (
         <div key={product.id}>
           <ProductDetailCard
             name={product.name}

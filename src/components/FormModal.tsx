@@ -117,6 +117,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
                   name="file"
                   onChange={(e: any) => setSelectedFile(e.target.files[0])}
                   id="file"
+                  required
                 />
               </div>
               <Button
