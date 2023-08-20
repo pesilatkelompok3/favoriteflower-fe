@@ -27,9 +27,9 @@ export default function TheFooter(): ReactElement {
           <div className="flex flex-col items-center">
             <h1 className="text-2xl font-bold mb-4">Social Media</h1>
             <div className="gap-2 flex mb-8">
-              <BsFacebook className="cursor-pointer hover:text-gray-300 h-8 w-8" />
-              <BsInstagram className="cursor-pointer hover:text-gray-300 h-8 w-8" />
-              <BsWhatsapp className="cursor-pointer hover:text-gray-300 h-8 w-8" />
+              <BsFacebook className="cursor-pointer hover:scale-110 text-gray-300 hover:text-white h-8 w-8" />
+              <BsInstagram className="cursor-pointer hover:scale-110 text-gray-300 hover:text-white h-8 w-8" />
+              <BsWhatsapp className="cursor-pointer hover:scale-110 text-gray-300 hover:text-white h-8 w-8" />
             </div>
           </div>
         </div>

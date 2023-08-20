@@ -16,8 +16,6 @@ export const metadata: Metadata = {
   description: "Ini Halaman Produk FavoriteFlowers",
 }
 
-console.log(metadata);
-
 const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
   loading: () => <Loading />,
 });
