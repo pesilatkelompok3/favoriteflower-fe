@@ -154,7 +154,7 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
           />
         </div>
         <div className="max-w-md">
-          <p className="italic text-lg mb-1">Gambar Produk Sebelumnya</p>
+          <p className="italic text-lg mb-1">Preview Gambar</p>
           {!product?.url ? (
             <p className="text-red-500">
               Tidak ada gambar saat ini. Silahkan isi gambar agar preview
@@ -178,7 +178,7 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
             Edit Product
           </Button>
           <Button
-            buttonType="submit"
+            buttonType="button"
             clickHandler={() => router.push("/admin")}
             className="bg-red-700 text-sm p-2 rounded-md text-white font-semibold mb-4"
           >

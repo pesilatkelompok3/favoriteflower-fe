@@ -5,13 +5,18 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
 import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-import { Spinner, Avatar, Button } from "flowbite-react";
-import Link from "next/link";
+
+import Button from "./Button";
+import { Spinner, Avatar } from "flowbite-react";
+import { useRouter } from "next/navigation";
+// import Link from "next/link";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
 
   const [filterText, setFilterText] = useState("");
+
+  const router = useRouter();
 
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
@@ -41,12 +46,15 @@ const ProductTable = (): React.ReactElement => {
 
   const ActionElement = (id: string) => (
     <div className="flex gap-2 items-center">
-      <Link href={`/admin/edit/${id}`}>
-        <Button className="bg-blue-500 text-white">Edit</Button>
-      </Link>
+      {/* <Link href={`/admin/edit/${id}`}> */}
+      <Button buttonType="button" className="bg-blue-500 text-white h-8 w-20 rounded-md" clickHandler={() => router.push(`/admin/edit/${id}`)}>
+        Edit
+      </Button>
+      {/* </Link> */}
       <Button
-        className="bg-red-500 text-white"
-        onClick={() => handleDelete(id)}
+        buttonType="button"
+        className="bg-red-500 text-white h-8 w-20 rounded-md"
+        clickHandler={() => handleDelete(id)}
       >
         Hapus
       </Button>
