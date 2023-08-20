@@ -1,8 +1,18 @@
 "use client";
 
 import ProductCard from "@/components/Home/productUs/ProductCard";
-import { useRef } from "react";
+import { fetchData, formatPrice } from "@/lib/utils";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
+
+type Product = {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+}
+
 export default function ProductUs() {
   const cardContainerRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +33,19 @@ export default function ProductUs() {
     WebkitOverflowScrolling: "touch", // For iOS Safari
     scrollBehavior: "smooth",
   };
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetchData(`http://localhost:5000/products`);
+
+      setProducts(response);
+    })();
+    // fetchProducts();
+  }, []);
+
+  const maxDisplayedProducts = 8;
+
 
   return (
     <div className="w-full h-auto bg-white px-4 md:px-16 pt-3">
@@ -45,14 +68,13 @@ export default function ProductUs() {
           className="w-full h-auto md:p-4  whitespace-nowrap scroll-auto overflow-x-auto"
           style={cardListStyle}
         >
+          {/* <ProductCard name /> */}
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.slice(0, maxDisplayedProducts).map((product: Product) => (
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <ProductCard name={product.name} price=""/>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

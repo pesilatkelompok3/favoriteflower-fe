@@ -127,3 +127,7 @@ export const customStyles = {
     },
   },
 };
+
+export const formatPrice = (price: string) => {
+  return parseFloat(price).toLocaleString("id-ID", { style: "currency", currency: "IDR" });
+};

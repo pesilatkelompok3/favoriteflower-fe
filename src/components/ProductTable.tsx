@@ -3,10 +3,11 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
+import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
 import { Spinner, Avatar, Button } from "flowbite-react";
 import { type } from "os";
+import Image from "next/image";
 // import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
@@ -33,8 +34,11 @@ const ProductTable = (): React.ReactElement => {
   const filteredId = products.findIndex((item: any) => item === item.id);
 
   const imageElement = (url: string) => {
-    return <Avatar img={url} size="lg" className="text-center" />;
-  };
+    return (
+      <div className="w-20 h-20">
+        <Image alt="gambar" src={url} width={100} height={100} className="text-center w-full h-full object-cover" priority />
+      </div>
+    )};
 
   const ActionElement = (
     <div className="flex gap-2">
@@ -53,11 +57,11 @@ const ProductTable = (): React.ReactElement => {
 
     return {
       id,
-      image: imageElement(url),
+      image: imageElement(url || "https://source.unsplash.com/random"),
       title: name,
       category,
       description,
-      price: `Rp. ${price}`,
+      price: formatPrice(price),
       action: ActionElement,
     };
   });

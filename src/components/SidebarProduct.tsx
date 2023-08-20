@@ -71,11 +71,12 @@ const SidebarProduct = () => {
         </div>
         <div className="mx-auto mt-8 w-56">
           {recentProduct.slice(0, 6).map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-            />
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <ProductCard
+                name={product.name}
+                price={product.price}
+              />
+            </Link>
           ))}
         </div>
       </div>

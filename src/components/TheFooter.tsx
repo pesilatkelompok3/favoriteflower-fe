@@ -1,9 +1,10 @@
 "use client";
 
+import { ReactElement } from "react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { Footer } from "flowbite-react";
 
-export default function TheFooter() {
+export default function TheFooter(): ReactElement {
   return (
     <Footer container className="text-white bg-black mt-20">
       <div className="w-full text-center lg:mx-48 lg:pt-4 2xl:mx-64">

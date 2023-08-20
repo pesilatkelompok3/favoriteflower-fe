@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { fetchData } from "@/lib/utils";
+import { fetchData, formatPrice } from "@/lib/utils";
 
 import { Hero } from "@/components/Hero";
 import ProductHead from "@/components/Home/productUs/ProductHead";
@@ -8,6 +8,15 @@ import ProductHead from "@/components/Home/productUs/ProductHead";
 import Loading from "@/components/Loading";
 import SidebarProduct from "@/components/SidebarProduct";
 import dynamic from "next/dynamic";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Produk",
+  description: "Ini Halaman Produk FavoriteFlowers",
+}
+
+console.log(metadata);
 
 const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
   loading: () => <Loading />,
@@ -81,7 +90,7 @@ const Product = (): React.ReactElement => {
                   key={product.id}
                   id={product.id}
                   name={product.name}
-                  price={product.price}
+                  price={formatPrice(product.price)}
                   description={product.description}
                 />
               ))}

@@ -20,7 +20,7 @@ export default function ProductCard({ name, price }: Product) {
         className="w-full h-16 absolute bottom-0 pb-1 px-5 flex items-end"
         style={{ background: gradient }}
       >
-        <h1 className="text-base text-black font-semibold mb-4">{name}</h1>
+        <h1 className="text-base text-black font-semibold mb-4 truncate">{name}</h1>
       </div>
     </div>
   );
