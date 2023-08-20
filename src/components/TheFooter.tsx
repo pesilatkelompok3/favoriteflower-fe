@@ -32,12 +32,12 @@ export default function TheFooter() {
             </div>
           </div>
         </div>
-        <Footer.Copyright
-          by="❤ WeebzDev XD"
-          href="#"
-          year={new Date().getFullYear()}
-        />
       </div>
+      <Footer.Copyright
+        by="❤ WeebzDev XD"
+        href="#"
+        year={new Date().getFullYear()}
+      />
     </Footer>
   );
 }
