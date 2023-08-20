@@ -2,10 +2,20 @@
 
 import React, { Suspense, useEffect, useState } from "react";
 import { fetchData, formatPrice } from "@/lib/utils";
-import ProductCard from "@/components/Card/ProductCard";
-import ProductDetailCard from "@/components/Card/ProductDetailCard";
 import axios from "axios";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Loading from "@/components/Loading";
+import LoadingDetail from "@/components/LoadingDetail";
+
+export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
+  const response = await axios.get(`http://localhost:5000/products/${productId}`);
+
+  return {
+    title: response.data.name,
+    description: response.data.description
+  }
+}
 
 type ProductParams = {
   params: {
@@ -22,20 +32,21 @@ type Product = {
   description: string;
   quantity: number;
   setQuantity: (value: number) => void;
+  loading: boolean;
 }
 
-export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
-  const response = await axios.get(`http://localhost:5000/products/${productId}`);
-
-  return {
-    title: response.data.name,
-    description: response.data.description
-  }
-}
+const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
+  loading: () => <Loading />,
+})
+const ProductDetailCard = dynamic(() => import("@/components/Card/ProductDetailCard"), {
+  loading: () => <LoadingDetail />,
+})
 
 const Product = ({ params: { productId } }: ProductParams): React.ReactElement => {
   const [product, setProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchProductById = async () => {
       try {
@@ -44,6 +55,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
         console.log(response);
 
         setProduct(response.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
         return err;
@@ -55,6 +67,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
       const response = await fetchData(`http://localhost:5000/products`);
 
       setProducts(response);
+      setLoading(false);
     };
     fetchProducts();
   }, [productId]);
@@ -72,8 +85,8 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
       <div className="bg-black w-full h-12 absolute top-0"></div>
       <div className="bg-black w-full h-12 sticky top-0"></div>
       {product && (
-        <Suspense fallback={<h2>Loading...</h2>} key={product.id}>
           <ProductDetailCard
+            key={product.id}
             imgUrl={product.url || "https://source.unsplash.com/random"}
             name={product.name}
             price={product.price}
@@ -82,17 +95,14 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
             quantity={quantity}
             setQuantity={handleQuantityChange}
           />
-        </Suspense>
       )}
       <div className="w-full h-auto flex justify-center items-center mb-8">
         <h1 className="mx-4 text-2xl font-bold">Produk Lainnya</h1>
       </div>
       <div className="container flex flex-row">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 gap-4">
           {products.slice(0, maxDisplayedProducts).map((product: Product) => (
-            <div key={product.id}>
-              <ProductCard name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} />
-            </div>
+            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} />
           ))}
         </div>
       </div>
