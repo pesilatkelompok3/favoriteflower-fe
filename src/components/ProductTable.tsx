@@ -9,7 +9,6 @@ import type { TableRowProps } from "@/lib/utils";
 import Button from "./Button";
 import { Spinner, Avatar } from "flowbite-react";
 import { useRouter } from "next/navigation";
-// import Link from "next/link";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
