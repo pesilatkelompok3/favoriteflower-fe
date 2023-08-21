@@ -1,6 +1,6 @@
 import ProductTable from "@/components/ProductTable";
 import ButtonModal from "@/components/ButtonModal";
-import isAuthenticated from "@/middleware/auth";
+// import isAuthenticated from "@/middleware/auth";
 
 function Dashboard() {
   return (

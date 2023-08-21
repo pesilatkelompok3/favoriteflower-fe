@@ -9,8 +9,6 @@ export default function DefaultForm() {
   const [password, setPassword] = useState("");
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // console.log(notelp);
-    // console.log(password);
 
     const data = await postData({
       url: "http://localhost:5000/signin",
@@ -19,6 +17,7 @@ export default function DefaultForm() {
         password,
       },
     });
+
     console.log(data);
   };
 

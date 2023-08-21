@@ -44,11 +44,13 @@ export const postData = async ({
       },
     });
 
-    alert("Data Berhasil Ditambahkan.");
+    // alert("Data Berhasil Ditambahkan.");
+    console.log("Data successfully added.");
     return postData;
   } catch (err: ApiProps["errResponse"]) {
     console.log(err);
-    alert("Data gagal ditambahkan.");
+    // alert("Data gagal ditambahkan.");
+    console.log("access denied: ", err.message);
     return err.message;
   }
 };
@@ -149,5 +151,8 @@ export type Product = {
 };
 
 export const formatPrice = (price: string) => {
-  return parseFloat(price).toLocaleString("id-ID", { style: "currency", currency: "IDR" });
+  return parseFloat(price).toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
 };
