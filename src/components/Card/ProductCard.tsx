@@ -23,11 +23,6 @@ const ProductCard = ({ id, name, price, category }: Product) => {
             alt="image"
           />
         </div>
-        {/* <div className="absolute bottom-5 left-3 right-0">
-          <h5 className="lg:w-3/4 hidden lg:block font-semibold  lg:text-xl">
-            {name}
-          </h5>
-        </div> */}
 
         <div className="p-2 lg:p-5 absolute bottom-0 left-0 right-0 bg-base ">
           <div className="block ">

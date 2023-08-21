@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { Metadata } from "next";
+import { middleware } from "@/middleware/page";
 
 import AboutComponent from "@/components/About";
 

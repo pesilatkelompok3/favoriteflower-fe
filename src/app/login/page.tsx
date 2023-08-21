@@ -23,7 +23,10 @@ export default function DefaultForm() {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center gap-10">
+      <h1 className="text-lg font-bold md:text-xl lg:text-3xl">
+        Login Favorite<span className="text-primary">Flower</span>
+      </h1>
       <form className="w-1/2 flex max-w-md flex-col gap-4" onSubmit={onSubmit}>
         <div>
           <div className="mb-2 block">

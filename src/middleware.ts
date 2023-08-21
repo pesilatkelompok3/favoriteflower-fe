@@ -1,8 +1,13 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export const middleware = (request: NextRequest) => {
-  // return NextResponse.redirect(new URL("/admin/login", request.url));
-};
+export function middleware(req: any) {
+  const cookie = req.cookies.get("token")?.value;
+  if (cookie === undefined) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url, req.url);
+  }
+}
 
 export const config = {
   matcher: "/admin",
