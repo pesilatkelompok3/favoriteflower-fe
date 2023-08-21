@@ -8,6 +8,7 @@ import Button from "./Button";
 
 import { useToggle } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import useGetPathUrl from "@/lib/GetPathUrl";
 
 const Navbar = (): React.ReactElement => {
   const [toggle, setToggle] = useToggle();
@@ -30,26 +31,42 @@ const Navbar = (): React.ReactElement => {
     };
   }, []);
 
+  const pathname = useGetPathUrl();
+  const [navStyle, setNavStyle] = useState(
+    "w-full bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
+  );
+  useEffect(() => {
+    if (pathname !== "/products/id") {
+      if (scrolling) {
+        setNavStyle(
+          "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
+        );
+      } else {
+        setNavStyle(
+          "w-full bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
+        );
+      }
+    } else {
+      if (scrolling) {
+        setNavStyle(
+          "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
+        );
+      } else {
+        setNavStyle(
+          "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
+        );
+      }
+    }
+  }, [pathname, scrolling]);
+
   return (
     <>
       <nav>
-        <div
-          className={`${
-            scrolling
-              ? "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
-              : "w-full bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
-          }`}
-        >
+        <div className={navStyle}>
           <Link href="/" className="px-4 py-1">
-            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">
-              FavoriteFlower
-            </span>
+            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">FavoriteFlower</span>
           </Link>
-          <Button
-            className="relative z-20"
-            buttonType="button"
-            clickHandler={setToggle}
-          >
+          <Button className="relative z-20" buttonType="button" clickHandler={setToggle}>
             <RxHamburgerMenu className="cursor-pointer h-[24px] w-[24px] mx-2 md:hidden" />
           </Button>
           <div
