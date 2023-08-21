@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Sidebar />
         <main className="flex flex-col md:flex-row md:justify-between">
-          <div className="w-1/2 md:w-3/4 lg:w-full">{children}</div>
+          <div className="md:w-3/4 lg:w-full">{children}</div>
           {/* <main>{children}</main> */}
         </main>
       </body>

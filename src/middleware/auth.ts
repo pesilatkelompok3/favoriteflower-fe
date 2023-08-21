@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
+import { checkUserLoggedIn } from "@/lib/utils";
 
-const isAuthenticated = (WrappedComponent) => {
-  return (props) => {
+type WrappedComponentProps = React.ReactElement;
+
+type CbProps = () => void;
+const isAuthenticated = (WrappedComponent: WrappedComponentProps) => {
+  return (props: CbProps) => {
     // Contoh cek status login, sesuaikan dengan implementasi Anda
     const isLoggedIn = checkUserLoggedIn(); // Implementasikan fungsi ini
 

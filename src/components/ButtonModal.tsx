@@ -13,7 +13,7 @@ export default function ButtonModal() {
     <>
       <Button
         onClick={() => props.setOpenModal("form-elements")}
-        className="bg-primary self-end my-8"
+        className="bg-primary self-end my-8 md:mr-4"
       >
         Tambah Produk Baru
       </Button>

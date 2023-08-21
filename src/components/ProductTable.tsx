@@ -3,16 +3,20 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns, deleteData } from "@/lib/utils";
+import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-import { Spinner, Avatar, Button } from "flowbite-react";
-import { type } from "os";
-// import Image from "next/image";
+
+import Button from "./Button";
+import { Spinner, Avatar } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ProductTable = (): React.ReactElement => {
   const [products, setProducts] = useState([]);
 
   const [filterText, setFilterText] = useState("");
+
+  const router = useRouter();
 
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
@@ -25,7 +29,7 @@ const ProductTable = (): React.ReactElement => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const response = await deleteData(`http://localhost:5000/products/${id}`);
+    await deleteData(`http://localhost:5000/products/${id}`);
     setProducts(products.filter((item: any) => item.id !== id));
   };
 
@@ -37,15 +41,23 @@ const ProductTable = (): React.ReactElement => {
   const filteredId = products.findIndex((item: any) => item === item.id);
 
   const imageElement = (url: string) => {
-    return <Avatar img={url} size="lg" className="text-center" />;
-  };
+    return (
+      <div className="w-20 h-20">
+        <Image alt="gambar" src={url} width={100} height={100} className="text-center w-full h-full object-cover" priority />
+      </div>
+    )};
 
   const ActionElement = (id: string) => (
-    <div className="flex gap-2">
-      <Button className="bg-blue-500 text-white">Edit</Button>
+    <div className="flex gap-2 items-center">
+      {/* <Link href={`/admin/edit/${id}`}> */}
+      <Button buttonType="button" className="bg-blue-500 text-white h-8 w-20 rounded-md" clickHandler={() => router.push(`/admin/edit/${id}`)}>
+        Edit
+      </Button>
+      {/* </Link> */}
       <Button
-        className="bg-red-500 text-white"
-        onClick={() => handleDelete(id)}
+        buttonType="button"
+        className="bg-red-500 text-white h-8 w-20 rounded-md"
+        clickHandler={() => handleDelete(id)}
       >
         Hapus
       </Button>
@@ -57,11 +69,11 @@ const ProductTable = (): React.ReactElement => {
 
     return {
       id,
-      image: imageElement(url),
+      image: imageElement(url || "https://source.unsplash.com/random"),
       title: name,
       category,
       description,
-      price: `Rp. ${price}`,
+      price: formatPrice(price),
       action: ActionElement(id),
     };
   });

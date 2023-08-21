@@ -7,6 +7,16 @@ const nextConfig = {
     env: {
         baseURL: "http://localhost:5000",
     },
+    images: {
+        domains: ["localhost"],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "source.unsplash.com",
+            },
+        ],
+        minimumCacheTTL: 15000000,
+    },
     // redirects: [
     //     {
     //         source: "/admin/login",
