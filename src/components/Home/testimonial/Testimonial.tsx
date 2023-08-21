@@ -63,7 +63,7 @@ const Testimonial = () => {
         <div onClick={scrollRight} className="absolute right-0 top-0 w-12 h-full z-30 md:hidden"></div>
         <div
           ref={cardContainerRef}
-          className="w-full h-auto md:p-4 whitespace-nowrap scroll-auto overflow-x-auto md:overflow-x-hidden"
+          className="w-full h-auto md:p-4 md:flex md:justify-center whitespace-nowrap scroll-auto overflow-x-auto md:overflow-x-hidden"
           style={cardListStyle}
         >
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
