@@ -1,7 +1,7 @@
 "use client";
 
 import ProductCard from "@/components/Home/productUs/ProductCard";
-import { fetchData, formatPrice } from "@/lib/utils";
+import { fetchData } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
