@@ -36,7 +36,8 @@ const Navbar = (): React.ReactElement => {
     "w-full bg-white flex justify-between items-center bg-opacity-10 backdrop-blur-md text-white h-auto relative"
   );
   useEffect(() => {
-    if (pathname !== "/products/id") {
+    const productIdRegex = /^\/products\/image-[\w-]+$/;
+    if (!productIdRegex.test(pathname)) {
       if (scrolling) {
         setNavStyle(
           "w-full bg-gray-900 flex justify-between items-center bg-opacity-80 backdrop-blur-md text-white h-auto relative"
