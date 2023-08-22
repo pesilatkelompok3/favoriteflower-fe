@@ -14,7 +14,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Produk",
   description: "Ini Halaman Produk FavoriteFlowers",
-}
+};
 
 const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
   loading: () => <Loading />,
@@ -29,7 +29,6 @@ const Product = (): React.ReactElement => {
   const [sort, onSort] = useState<string>("");
 
   const category = searchParams.get("category");
-  console.log("cat:", category);
 
   useEffect(() => {
     const fetchProducts = async () => {

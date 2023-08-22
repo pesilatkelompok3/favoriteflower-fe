@@ -42,6 +42,7 @@ export const postData = async ({
         "Content-Type": "multipart/form-data",
         // "Accept": "application/json",
       },
+      withCredentials: true,
     });
 
     alert("Data Berhasil Ditambahkan.");
@@ -149,5 +150,8 @@ export type Product = {
 };
 
 export const formatPrice = (price: string) => {
-  return parseFloat(price).toLocaleString("id-ID", { style: "currency", currency: "IDR" });
+  return parseFloat(price).toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
 };

@@ -6,6 +6,8 @@ export function middleware(req: any) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url, req.url);
+  } else if (!cookie) {
+    return NextResponse.redirect("/home");
   }
 }
 
