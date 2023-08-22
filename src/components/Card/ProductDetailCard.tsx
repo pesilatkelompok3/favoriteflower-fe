@@ -1,6 +1,7 @@
 import Image from "next/image";
 import InputCounter from "../InputCounter";
 import { formatPrice } from "@/lib/utils";
+import Button from "../Button";
 
 type Product = {
   name: string;
@@ -10,11 +11,10 @@ type Product = {
   price: string;
   quantity: number;
   setQuantity: (value: number) => void;
+  waApiLink: string;
 };
 
-const ProductDetailCard = ({ name, price, category, description, imgUrl, quantity, setQuantity }: Product) => {
-  const numericPrice = parseFloat(price);
-  const totalPrice = numericPrice * quantity;
+const ProductDetailCard = ({ name, price, category, description, imgUrl, quantity, setQuantity, waApiLink }: Product) => {
 
   return (
     <div className="container my-8 lg:my-24">
@@ -29,16 +29,16 @@ const ProductDetailCard = ({ name, price, category, description, imgUrl, quantit
             <p className="hidden md:block text-gray-600">{category}</p>
           </div>
           <p className="hidden md:block mb-20 text-gray-600 text-justify">{description}</p>
-          <p className="md:hidden text-lg mb-2 font-semibold text-green-500">{formatPrice(totalPrice.toString())}</p>
+          <p className="md:hidden text-lg mb-2 font-semibold text-green-500">{price}</p>
           <InputCounter onValueChange={(newQuantity) => { setQuantity(newQuantity); }} className="md:hidden mb-2" />
           <div className="hidden md:flex flex-row justify-between items-end">
             <InputCounter onValueChange={(newQuantity) => { setQuantity(newQuantity); }} />
             <div className="justify-between">
-              <p className="text-end text-lg mb-2 font-semibold text-green-500">{formatPrice(totalPrice.toString())}</p>
-              <button onClick={() => {}} type="button" className="bg-primary w-48 rounded-xl py-2.5 text-white">Pesan</button>
+              <p className="text-end text-lg mb-2 font-semibold text-green-500">{price}</p>
+              <Button buttonType="button" clickHandler={() => { location.href = `${waApiLink}` }} className="bg-green-400 hover:bg-green-500 w-48 rounded-xl py-2.5 text-white">Pesan</Button>
             </div>
           </div>
-          <button type="button" className="md:hidden bg-primary rounded-xl py-2.5 text-white">Pesan</button>
+          <Button buttonType="button" clickHandler={() => { location.href = `${waApiLink}` }} className="md:hidden bg-green-400 hover:bg-green-500 rounded-xl py-2.5 text-white">Pesan</Button>
           <p className="md:hidden text-gray-600 text-justify mt-4">{description}</p>
         </div>
       </div>

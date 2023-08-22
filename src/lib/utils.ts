@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios, { Axios, AxiosError } from "axios";
+import axios from "axios";
 
 type ApiProps = {
   url: string;
@@ -45,18 +45,22 @@ export const postData = async ({
       withCredentials: true,
     });
 
-    alert("Data Berhasil Ditambahkan.");
+    // alert("Data Berhasil Ditambahkan.");
+    console.log("Data successfully added.");
     return postData;
   } catch (err: ApiProps["errResponse"]) {
     console.log(err);
-    alert("Data gagal ditambahkan.");
+    // alert("Data gagal ditambahkan.");
+    console.log("access denied: ", err.message);
     return err.message;
   }
 };
 
 export const deleteData = async (url: ApiProps["url"]) => {
   try {
-    const deleteData = await axios.delete(url);
+    const deleteData = await axios.delete(url, {
+      withCredentials: true,
+    });
     alert("Data Berhasil Dihapus.");
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {

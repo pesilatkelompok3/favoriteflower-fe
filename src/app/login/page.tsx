@@ -1,28 +1,54 @@
 "use client";
 import React from "react";
 import { postData } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 import LoginInput from "@/components/LoginInput";
 
 export default function DefaultForm() {
-  const onLogin = async ({
+  const router = useRouter();
+
+  const onSubmit = async ({
     username,
     password,
   }: {
     username: string;
     password: string;
   }) => {
-    const data = await postData({
-      url: "http://localhost:5000/signin",
-      data: {
-        username,
-        password,
-      },
-    });
+    try {
+      const postData = await axios.post(
+        `${process.env.baseURL}/signin`,
+        {
+          username,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
+
+      // alert("Data Berhasil Ditambahkan.");
+      console.log("Data successfully added.");
+
+      router.push("/admin");
+
+      return postData;
+    } catch (err: any) {
+      console.log(err);
+      // alert("Data gagal ditambahkan.");
+      console.log("access denied: ", err.message);
+      return err.message;
+    }
+
+    // console.log(data);
   };
 
   return (
     <>
-      <LoginInput onLogin={onLogin} />
+      <LoginInput onLogin={onSubmit} />
     </>
   );
 }

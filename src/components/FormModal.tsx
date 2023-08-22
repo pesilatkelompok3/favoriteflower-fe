@@ -36,7 +36,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
         data: formData,
       });
 
-      window.location.reload();
+      // window.location.reload();
     };
 
     return (

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchData, formatPrice } from "@/lib/utils";
 import axios from "axios";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Loading from "@/components/Loading";
 import LoadingDetail from "@/components/LoadingDetail";
+import { usePathname } from "next/navigation";
 
 export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
   const response = await axios.get(`http://localhost:5000/products/${productId}`);
@@ -23,7 +24,7 @@ type ProductParams = {
   };
 };
 
-type Product = {
+type ProductProps = {
   id: string;
   name: string;
   url: string;
@@ -43,7 +44,7 @@ const ProductDetailCard = dynamic(() => import("@/components/Card/ProductDetailC
 })
 
 const Product = ({ params: { productId } }: ProductParams): React.ReactElement => {
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ProductProps | null>(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -80,28 +81,49 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
     setQuantity(newQuantity);
   };
 
+  const numericPrice = parseFloat(`${product?.price}`);
+  const totalPrice = numericPrice * quantity;
+
+  const baseUrl = "https://api.whatsapp.com/";
+  const phoneNumber = "6281234567890";
+
+  const messageTemplate = `
+  Halo FavoriteFlower! 👋 Saya ingin memesan barang ${product?.name}.
+  
+  Apakah barang ini masih tersedia?
+  🌸 Jumlah yang diinginkan: ${quantity}
+  💰 Harga: ${formatPrice(totalPrice.toString())}
+  🔗 Link Produk: http://localhost:3000${usePathname()}
+  
+  Terima kasih banyak! 🚀
+  `;
+
+  const encodedMessage = encodeURIComponent(messageTemplate);
+
+  const preFilledLink = `${baseUrl}send/?phone=${phoneNumber}&text=${encodedMessage}`;
+  console.log(preFilledLink);
+
   return (
     <>
-      <div className="bg-black w-full h-12 absolute top-0"></div>
-      <div className="bg-black w-full h-12 sticky top-0"></div>
       {product && (
-          <ProductDetailCard
-            key={product.id}
-            imgUrl={product.url || "https://source.unsplash.com/random"}
-            name={product.name}
-            price={product.price}
-            category={product.category}
-            description={product.description}
-            quantity={quantity}
-            setQuantity={handleQuantityChange}
-          />
+        <ProductDetailCard
+          key={product.id}
+          imgUrl={product.url}
+          name={product.name}
+          price={formatPrice(totalPrice.toString())}
+          category={product.category}
+          description={product.description}
+          quantity={quantity}
+          setQuantity={handleQuantityChange}
+          waApiLink={preFilledLink}
+        />
       )}
       <div className="w-full h-auto flex justify-center items-center mb-8">
         <h1 className="mx-4 text-2xl font-bold">Produk Lainnya</h1>
       </div>
       <div className="container flex flex-row">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4">
-          {products.slice(0, maxDisplayedProducts).map((product: Product) => (
+          {products.slice(0, maxDisplayedProducts).map((product: ProductProps) => (
             <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} />
           ))}
         </div>
