@@ -105,12 +105,10 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
 
   return (
     <>
-      <div className="bg-black w-full h-12 absolute top-0"></div>
-      <div className="bg-black w-full h-12 sticky top-0"></div>
       {product && (
         <ProductDetailCard
           key={product.id}
-          imgUrl={product.url || "https://source.unsplash.com/random"}
+          imgUrl={product.url}
           name={product.name}
           price={formatPrice(totalPrice.toString())}
           category={product.category}

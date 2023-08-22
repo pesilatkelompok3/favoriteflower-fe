@@ -64,7 +64,9 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
       formData.append("price", price);
       formData.append("file", selectedFile);
 
-      await axios.patch(`${process.env.baseURL}/products/${id}`, formData);
+      await axios.patch(`${process.env.baseURL}/products/${id}`, formData, {
+        withCredentials: true,
+      });
 
       alert("Data Berhasil Diubah.");
       router.push("/admin");
