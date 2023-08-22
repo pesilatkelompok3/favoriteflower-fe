@@ -7,7 +7,7 @@ import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib
 import type { TableRowProps } from "@/lib/utils";
 
 import Button from "./Button";
-import { Spinner, Avatar } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 

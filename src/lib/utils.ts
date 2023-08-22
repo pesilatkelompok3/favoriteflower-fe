@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios, { Axios, AxiosError } from "axios";
+import axios from "axios";
 
 type ApiProps = {
   url: string;
@@ -42,6 +42,7 @@ export const postData = async ({
         "Content-Type": "multipart/form-data",
         // "Accept": "application/json",
       },
+      withCredentials: true,
     });
 
     // alert("Data Berhasil Ditambahkan.");
@@ -57,7 +58,9 @@ export const postData = async ({
 
 export const deleteData = async (url: ApiProps["url"]) => {
   try {
-    const deleteData = await axios.delete(url);
+    const deleteData = await axios.delete(url, {
+      withCredentials: true,
+    });
     alert("Data Berhasil Dihapus.");
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {
