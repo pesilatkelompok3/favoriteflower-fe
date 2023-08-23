@@ -61,10 +61,8 @@ export const deleteData = async (url: ApiProps["url"]) => {
     const deleteData = await axios.delete(url, {
       withCredentials: true,
     });
-    alert("Data Berhasil Dihapus.");
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {
-    alert(err.message);
     return err.message;
   }
 };

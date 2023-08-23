@@ -122,6 +122,17 @@ const ProductTable = (): React.ReactElement => {
 
   const [pending, setPending] = useState(true);
 
+  const loadingComponent = (
+    <div className="text-center flex flex-col items-center justify-center gap-4 absolute left-0 right-0 mt-8">
+      <Spinner
+        aria-label="Extra large spinner example"
+        className="h-8 w-8"
+        color="purple"
+      />
+      <p className="font-semibold">Sedang memuat data...</p>
+    </div>
+  );
+
   const sortIcon = <LuArrowDownUp />;
 
   const subHeaderComponentMemo = useMemo(() => {
@@ -168,16 +179,7 @@ const ProductTable = (): React.ReactElement => {
       sortIcon={sortIcon}
       columns={columns}
       progressPending={pending}
-      progressComponent={
-        <div className="text-center flex flex-col items-center justify-center gap-4">
-          <Spinner
-            aria-label="Extra large spinner example"
-            className="h-8 w-8"
-            color="purple"
-          />
-          <p className="font-semibold">Sedang memuat data...</p>
-        </div>
-      }
+      progressComponent={loadingComponent}
       data={dataProduct}
     />
   );
