@@ -52,7 +52,7 @@ const Product = (): React.ReactElement => {
     price: string;
     description: string;
     category: string;
-    loading: boolean;
+    image: string;
   };
 
   const filterByCategory = products.filter((product: Product) => {
@@ -102,6 +102,7 @@ const Product = (): React.ReactElement => {
                 name={product.name}
                 price={formatPrice(product.price)}
                 category={product.category}
+                image={product.image}
               />
             ))}
           </div>
