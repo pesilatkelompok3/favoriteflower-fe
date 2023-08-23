@@ -3,9 +3,15 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib/utils";
+import {
+  fetchData,
+  customStyles,
+  columns,
+  deleteData,
+  formatPrice,
+} from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-
+import Swal from "sweetalert2";
 import Button from "./Button";
 import { Spinner } from "flowbite-react";
 import { useRouter } from "next/navigation";
@@ -29,8 +35,32 @@ const ProductTable = (): React.ReactElement => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    await deleteData(`http://localhost:5000/products/${id}`);
-    setProducts(products.filter((item: any) => item.id !== id));
+    await Swal.fire({
+      title: "Konfirmasi Hapus!",
+      text: "Apakah anda yakin ingin menghapus Produk ini ?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#eb4034",
+      cancelButtonText: "Batal",
+      confirmButtonColor: "#2ccf23",
+      confirmButtonText: "Hapus",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteData(`http://localhost:5000/products/${id}`);
+        setProducts(products.filter((item: any) => item.id !== id));
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Produk berhasil dihapus",
+          icon: "success",
+        });
+      } else if (result.isDismissed) {
+        Swal.fire({
+          title: "Batal!",
+          text: "Produk batal dihapus",
+          icon: "error",
+        });
+      }
+    });
   };
 
   const filteredItems = products.filter(
@@ -43,14 +73,26 @@ const ProductTable = (): React.ReactElement => {
   const imageElement = (url: string) => {
     return (
       <div className="w-20 h-20">
-        <Image alt="gambar" src={url} width={100} height={100} className="text-center w-full h-full object-cover" priority />
+        <Image
+          alt="gambar"
+          src={url}
+          width={100}
+          height={100}
+          className="text-center w-full h-full object-cover"
+          priority
+        />
       </div>
-    )};
+    );
+  };
 
   const ActionElement = (id: string) => (
     <div className="flex gap-2 items-center">
       {/* <Link href={`/admin/edit/${id}`}> */}
-      <Button buttonType="button" className="bg-blue-500 text-white h-8 w-20 rounded-md" clickHandler={() => router.push(`/admin/edit/${id}`)}>
+      <Button
+        buttonType="button"
+        className="bg-blue-500 text-white h-8 w-20 rounded-md"
+        clickHandler={() => router.push(`/admin/edit/${id}`)}
+      >
         Edit
       </Button>
       {/* </Link> */}
