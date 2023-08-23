@@ -11,7 +11,8 @@ type Product = {
   name: string;
   price: string;
   description: string;
-}
+  image: string;
+};
 
 export default function ProductUs() {
   const cardContainerRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,6 @@ export default function ProductUs() {
 
   const maxDisplayedProducts = 8;
 
-
   return (
     <div className="w-full h-auto bg-white px-4 md:px-16 pt-3">
       <div className="w-full h-auto flex justify-center items-center">
@@ -72,7 +72,12 @@ export default function ProductUs() {
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
           {products.slice(0, maxDisplayedProducts).map((product: Product) => (
             <Link href={`/products/${product.id}`} key={product.id}>
-              <ProductCard id={product.id} name={product.name} price=""/>
+              <ProductCard
+                id={product.id}
+                name={product.name}
+                price=""
+                image={product.image}
+              />
             </Link>
           ))}
         </div>

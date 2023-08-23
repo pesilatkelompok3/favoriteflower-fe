@@ -10,16 +10,17 @@ type Product = {
   name: string;
   price: string;
   category: string;
+  image: string;
 };
 
-const ProductCard = ({ id, name, price, category }: Product) => {
+const ProductCard = ({ id, name, price, category, image }: Product) => {
   return (
     <>
       <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
         <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
             className="rounded-lg h-36 lg:h-full m-auto "
-            src={ImageCard}
+            src={image || ImageCard}
             alt="image"
           />
         </div>

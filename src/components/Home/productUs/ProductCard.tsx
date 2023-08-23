@@ -6,8 +6,9 @@ type Product = {
   id: string;
   name: string;
   price: string;
+  image: string;
 };
-export default function ProductCard({ id, name, price }: Product) {
+export default function ProductCard({ id, name, price, image }: Product) {
   const gradient =
     "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)";
 
@@ -18,7 +19,7 @@ export default function ProductCard({ id, name, price }: Product) {
     >
       <Image
         className="w-full h-full object-cover"
-        src={Image1}
+        src={image || Image1}
         alt="Picture of the author"
       />
       <div
