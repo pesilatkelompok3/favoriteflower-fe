@@ -29,10 +29,8 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
       formData.append("description", description);
       formData.append("file", selectedFile);
 
-      console.log(selectedFile);
-
       await postData({
-        url: "http://localhost:5000/products",
+        url: `${process.env.baseURL}/products`,
         data: formData,
       });
       Alert({

@@ -46,7 +46,7 @@ const ProductTable = (): React.ReactElement => {
       confirmButtonText: "Hapus",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteData(`http://localhost:5000/products/${id}`);
+        deleteData(`${process.env.baseURL}/products/${id}`);
         setProducts(products.filter((item: any) => item.id !== id));
         Swal.fire({
           title: "Berhasil!",
@@ -111,7 +111,7 @@ const ProductTable = (): React.ReactElement => {
 
     return {
       id,
-      image: imageElement(url || "https://source.unsplash.com/random"),
+      image: imageElement(url),
       title: name,
       category,
       description,

@@ -5,7 +5,7 @@ const nextConfig = {
     "Access-Control-Allow-Credentials": true,
   },
   env: {
-    baseURL: "http://localhost:5000",
+    baseURL: process.env.BASEURL,
   },
   images: {
     domains: ["localhost"],
