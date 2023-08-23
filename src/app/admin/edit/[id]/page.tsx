@@ -13,8 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import type { Product } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
-
+import Alert from "@/components/Alert";
 const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [name, setName] = useState("");
@@ -69,9 +68,9 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
         withCredentials: true,
       });
 
-      Swal.fire({
-        title: "Berhasil!",
-        text: "Produk berhasil diubah",
+      Alert({
+        title: "Berhasil",
+        text: "Data berhasil diubah",
         icon: "success",
       });
 

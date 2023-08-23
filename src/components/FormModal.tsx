@@ -3,7 +3,7 @@ import { Label, Modal, TextInput, Textarea, FileInput } from "flowbite-react";
 import Button from "./Button";
 import { postData } from "@/lib/utils";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import Alert from "./Alert";
 type FormModalProps = {
   openModal: any;
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -35,13 +35,10 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
         url: "http://localhost:5000/products",
         data: formData,
       });
-      Swal.fire({
-        title: "Berhasil!",
-        text: "Produk berhasil ditambahkan",
+      Alert({
+        title: "Berhasil",
+        text: "Data berhasil ditambahkan",
         icon: "success",
-        showCancelButton: true,
-        confirmButtonColor: "#2ccf23",
-        confirmButtonText: "Ok",
       });
       setProduct("");
       setCategory("");
