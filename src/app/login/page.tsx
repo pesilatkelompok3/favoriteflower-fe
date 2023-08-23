@@ -15,6 +15,7 @@ export default function DefaultForm() {
     username: string;
     password: string;
   }) => {
+    console.log("user:", username, "pass", password);
     try {
       const postData = await axios.post(
         `${process.env.baseURL}/signin`,
