@@ -73,19 +73,10 @@ const Sidebar = (): React.ReactElement => {
             <li>
               <Link
                 href="/admin"
-                className="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group text-primary"
               >
                 <BsClipboardData />
                 <span className="ml-3">Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/admin/add-product"
-                className="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group"
-              >
-                <VscAdd />
-                <span className="ml-3">Tambah Produk</span>
               </Link>
             </li>
           </ul>
