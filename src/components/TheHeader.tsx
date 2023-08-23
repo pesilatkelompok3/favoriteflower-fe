@@ -63,6 +63,10 @@ const Navbar = (): React.ReactElement => {
   return (
     <>
       <nav>
+        <div
+          onClick={setToggle}
+          className={`${toggle === false ? "" : "min-h-screen w-full absolute md:hidden"}`}
+        ></div>
         <div className={navStyle}>
           <Link href="/" className="px-4 py-1">
             <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">FavoriteFlower</span>
