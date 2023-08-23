@@ -11,7 +11,7 @@ import {
   formatPrice,
 } from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
-
+import Swal from "sweetalert2";
 import Button from "./Button";
 import { Spinner } from "flowbite-react";
 import { useRouter } from "next/navigation";
@@ -35,8 +35,32 @@ const ProductTable = (): React.ReactElement => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    await deleteData(`http://localhost:5000/products/${id}`);
-    setProducts(products.filter((item: any) => item.id !== id));
+    await Swal.fire({
+      title: "Konfirmasi Hapus!",
+      text: "Apakah anda yakin ingin menghapus Produk ini ?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#eb4034",
+      cancelButtonText: "Batal",
+      confirmButtonColor: "#2ccf23",
+      confirmButtonText: "Hapus",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteData(`http://localhost:5000/products/${id}`);
+        setProducts(products.filter((item: any) => item.id !== id));
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Produk berhasil dihapus",
+          icon: "success",
+        });
+      } else if (result.isDismissed) {
+        Swal.fire({
+          title: "Batal!",
+          text: "Produk batal dihapus",
+          icon: "error",
+        });
+      }
+    });
   };
 
   const filteredItems = products.filter(

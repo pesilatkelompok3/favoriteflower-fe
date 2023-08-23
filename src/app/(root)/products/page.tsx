@@ -24,7 +24,6 @@ const Product = (): React.ReactElement => {
   const searchParams = useSearchParams();
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [search, onSearch] = useState("");
   const [sort, onSort] = useState<string>("");
 
@@ -35,7 +34,6 @@ const Product = (): React.ReactElement => {
       const response = await fetchData(`http://localhost:5000/products`);
 
       setProducts(response);
-      setLoading(false);
     };
     fetchProducts();
   }, []);
@@ -64,10 +62,14 @@ const Product = (): React.ReactElement => {
   });
 
   const filterSortProduct = filterByCategory.sort((a: any, b: any) => {
-    if (sort === "ASC") {
+    if (sort === "A-Z") {
       return a.name.localeCompare(b.name);
-    } else if (sort === "DESC") {
+    } else if (sort === "Z-A") {
       return b.name.localeCompare(a.name);
+    } else if (sort === "Harga Tertinggi") {
+      return b.price - a.price;
+    } else if (sort === "Harga Terendah") {
+      return a.price - b.price;
     } else {
       return products;
     }
@@ -92,7 +94,7 @@ const Product = (): React.ReactElement => {
       />
       <div className="flex justify-around w-screen md:mt-24">
         <div className="px-5 md:w-3/4 sm:w-full">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {filterSearchProduct.map((product: Product) => (
               <ProductCard
                 key={product.id}

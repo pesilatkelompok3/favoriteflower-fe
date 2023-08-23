@@ -8,7 +8,7 @@ type filter = {
   onSort: (option: string) => void;
 };
 const Sort = ({ sort, onSort }: filter): React.ReactElement => {
-  const options = ["ASC", "DESC"];
+  const options = ["A-Z", "Z-A", "Harga Tertinggi", "Harga Terendah"];
   return (
     <div className="flex items-center gap-1 text-lg md:bg-base md:p-1 md:rounded">
       <BiSortAlt2 />

@@ -15,7 +15,7 @@ type Product = {
 const ProductCard = ({ id, name, price, category }: Product) => {
   return (
     <>
-      <div className="relative w-44 h-full lg:w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
+      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
         <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
             className="rounded-lg h-36 lg:h-full m-auto "
@@ -24,18 +24,18 @@ const ProductCard = ({ id, name, price, category }: Product) => {
           />
         </div>
 
-        <div className="p-2 lg:p-5 absolute bottom-0 left-0 right-0 bg-base ">
-          <div className="block ">
+        <div className="p-2 lg:p-5 absolute bottom-0 left-0 right-0 bg-base">
+          <div className="block">
             <h5 className="mb-2  md:text-lg  font-bold tracking-tight text-gray-900 hover:text-primary truncate">
               {name}
             </h5>
           </div>
-          <p className="mb-3 truncate">{category}</p>
-          <div className="flex justify-between  items-center">
+          <p className="lg:mb-3 truncate">{category}</p>
+          <div className="flex justify-between items-center lg:gap-1">
             <p className="font-medium ">{price}</p>
             <Link
               href={`/products/${id}`}
-              className="md:text-md bg-primary rounded-xl text-white p-2 lg:px-3 hover:text-black"
+              className="md:text-md bg-primary w-1/4 md:w-1/2 md:h-full text-center rounded-xl text-white p-1 lg:p-2  hover:text-black"
             >
               Pesan
             </Link>
