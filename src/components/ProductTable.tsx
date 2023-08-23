@@ -3,7 +3,13 @@
 import DataTable from "react-data-table-component";
 import { LuArrowDownUp } from "react-icons/lu";
 import { useEffect, useState, useMemo } from "react";
-import { fetchData, customStyles, columns, deleteData, formatPrice } from "@/lib/utils";
+import {
+  fetchData,
+  customStyles,
+  columns,
+  deleteData,
+  formatPrice,
+} from "@/lib/utils";
 import type { TableRowProps } from "@/lib/utils";
 
 import Button from "./Button";
@@ -43,14 +49,26 @@ const ProductTable = (): React.ReactElement => {
   const imageElement = (url: string) => {
     return (
       <div className="w-20 h-20">
-        <Image alt="gambar" src={url} width={100} height={100} className="text-center w-full h-full object-cover" priority />
+        <Image
+          alt="gambar"
+          src={url}
+          width={100}
+          height={100}
+          className="text-center w-full h-full object-cover"
+          priority
+        />
       </div>
-    )};
+    );
+  };
 
   const ActionElement = (id: string) => (
     <div className="flex gap-2 items-center">
       {/* <Link href={`/admin/edit/${id}`}> */}
-      <Button buttonType="button" className="bg-blue-500 text-white h-8 w-20 rounded-md" clickHandler={() => router.push(`/admin/edit/${id}`)}>
+      <Button
+        buttonType="button"
+        className="bg-blue-500 text-white h-8 w-20 rounded-md"
+        clickHandler={() => router.push(`/admin/edit/${id}`)}
+      >
         Edit
       </Button>
       {/* </Link> */}
@@ -79,6 +97,17 @@ const ProductTable = (): React.ReactElement => {
   });
 
   const [pending, setPending] = useState(true);
+
+  const loadingComponent = (
+    <div className="text-center flex flex-col items-center justify-center gap-4 absolute left-0 right-0 mt-8">
+      <Spinner
+        aria-label="Extra large spinner example"
+        className="h-8 w-8"
+        color="purple"
+      />
+      <p className="font-semibold">Sedang memuat data...</p>
+    </div>
+  );
 
   const sortIcon = <LuArrowDownUp />;
 
@@ -126,16 +155,7 @@ const ProductTable = (): React.ReactElement => {
       sortIcon={sortIcon}
       columns={columns}
       progressPending={pending}
-      progressComponent={
-        <div className="text-center flex flex-col items-center justify-center gap-4">
-          <Spinner
-            aria-label="Extra large spinner example"
-            className="h-8 w-8"
-            color="purple"
-          />
-          <p className="font-semibold">Sedang memuat data...</p>
-        </div>
-      }
+      progressComponent={loadingComponent}
       data={dataProduct}
     />
   );
