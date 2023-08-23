@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { postData } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import LoginInput from "@/components/LoginInput";
+import Alert from "@/components/Alert";
 
 export default function DefaultForm() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function DefaultForm() {
   }) => {
     console.log("user:", username, "pass", password);
     try {
-      const postData = await axios.post(
+      const response = await axios.post(
         `${process.env.baseURL}/signin`,
         {
           username,
@@ -31,20 +31,25 @@ export default function DefaultForm() {
         }
       );
 
-      // alert("Data Berhasil Ditambahkan.");
-      console.log("Data successfully added.");
+      Alert({
+        title: "Berhasil",
+        text: response.data.message,
+        icon: "success",
+      });
 
       router.push("/admin");
 
-      return postData;
+      return response;
     } catch (err: any) {
       console.log(err);
-      // alert("Data gagal ditambahkan.");
+      Alert({
+        title: err.response.statusText,
+        text: err.response.data.errors,
+        icon: "error",
+      });
       console.log("access denied: ", err.message);
       return err.message;
     }
-
-    // console.log(data);
   };
 
   return (
