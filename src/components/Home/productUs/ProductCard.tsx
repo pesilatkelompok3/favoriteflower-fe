@@ -1,14 +1,12 @@
-import Image1 from "~/assets/images/7a41c59ebeff0bc91f253a0c85d18e01.jpeg";
 import Image from "next/image";
 import Link from "next/link";
 
 type Product = {
   id: string;
   name: string;
-  price: string;
-  image: string;
+  url: string;
 };
-export default function ProductCard({ id, name, price, image }: Product) {
+export default function ProductCard({ id, name, url }: Product) {
   const gradient =
     "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)";
 
@@ -19,16 +17,16 @@ export default function ProductCard({ id, name, price, image }: Product) {
     >
       <Image
         className="w-full h-full object-cover"
-        src={image || Image1}
+        src={url}
+        width={800}
+        height={800}
         alt="Picture of the author"
       />
       <div
         className="w-full h-16 absolute bottom-0 pb-1 px-5 flex items-end"
         style={{ background: gradient }}
       >
-        <h5 // href={`/products/${id}`}
-          className="text-base text-black font-semibold mb-4 truncate hover:text-primary"
-        >
+        <h5 className="text-base text-black font-semibold mb-4 truncate hover:text-primary">
           {name}
         </h5>
       </div>

@@ -40,9 +40,8 @@ const SidebarProduct = ({ category }: any) => {
   type Product = {
     id: string;
     name: string;
-    price: string;
     category: string;
-    loading: boolean;
+    url: string;
   };
 
   return (
@@ -75,7 +74,7 @@ const SidebarProduct = ({ category }: any) => {
               <ProductCard
                 id={product.id}
                 name={product.name}
-                price={product.price}
+                url={product.url}
               />
             </Link>
           ))}

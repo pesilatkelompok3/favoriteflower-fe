@@ -52,7 +52,7 @@ const Product = (): React.ReactElement => {
     price: string;
     description: string;
     category: string;
-    image: string;
+    url: string;
   };
 
   const filterByCategory = products.filter((product: Product) => {
@@ -93,8 +93,8 @@ const Product = (): React.ReactElement => {
         onSort={onSortHandler}
       />
       <div className="flex justify-around w-screen md:mt-24">
-        <div className="px-5 md:w-3/4 sm:w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="px-5 md:w-3/4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-2">
             {filterSearchProduct.map((product: Product) => (
               <ProductCard
                 key={product.id}
@@ -102,7 +102,7 @@ const Product = (): React.ReactElement => {
                 name={product.name}
                 price={formatPrice(product.price)}
                 category={product.category}
-                image={product.image}
+                url={product.url}
               />
             ))}
           </div>
