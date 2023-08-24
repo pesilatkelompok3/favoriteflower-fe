@@ -9,9 +9,7 @@ import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 type Product = {
   id: string;
   name: string;
-  price: string;
-  description: string;
-  image: string;
+  url: string;
 };
 
 export default function ProductUs() {
@@ -75,8 +73,7 @@ export default function ProductUs() {
               <ProductCard
                 id={product.id}
                 name={product.name}
-                price=""
-                image={product.image}
+                url={product.url}
               />
             </Link>
           ))}

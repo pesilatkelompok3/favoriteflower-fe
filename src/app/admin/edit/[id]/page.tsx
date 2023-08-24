@@ -2,14 +2,7 @@
 
 import axios from "axios";
 import Button from "@/components/Button";
-import {
-  Label,
-  TextInput,
-  FileInput,
-  Textarea,
-  Avatar,
-  AvatarProps,
-} from "flowbite-react";
+import { Label, TextInput, FileInput, Textarea, Avatar } from "flowbite-react";
 import { useEffect, useState } from "react";
 import type { Product } from "@/lib/utils";
 import { useRouter } from "next/navigation";

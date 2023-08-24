@@ -67,6 +67,24 @@ export const deleteData = async (url: ApiProps["url"]) => {
   }
 };
 
+export const signOut = async (url: ApiProps["url"]) => {
+  try {
+    const signOut = await axios.post(
+      url,
+      {
+        username: "",
+        password: "",
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    return signOut;
+  } catch (err: ApiProps["errResponse"]) {
+    return err.message;
+  }
+};
+
 export const useToggle = (
   initialState = false
 ): [boolean | string, () => void] => {
