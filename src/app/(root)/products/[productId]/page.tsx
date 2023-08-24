@@ -124,7 +124,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
       <div className="container flex flex-row">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4">
           {products.slice(0, maxDisplayedProducts).map((product: ProductProps) => (
-            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} />
+            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} image={product.url} />
           ))}
         </div>
       </div>

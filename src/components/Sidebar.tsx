@@ -1,13 +1,20 @@
 "use client";
 
-import { BsClipboardData, BsStar } from "react-icons/bs";
+import { BsClipboardData } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { VscAdd } from "react-icons/vsc";
+import { VscSignOut } from "react-icons/vsc";
 import Link from "next/link";
-import { useToggle } from "@/lib/utils";
+import { useToggle, signOut } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const Sidebar = (): React.ReactElement => {
   const [toggle, setToggle] = useToggle();
+  const router = useRouter();
+
+  const signOutHandler = async () => {
+    await signOut(`${process.env.baseURL}/signout`);
+    router.refresh();
+  };
 
   return (
     <>
@@ -73,11 +80,20 @@ const Sidebar = (): React.ReactElement => {
             <li>
               <Link
                 href="/admin"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group text-primary"
+                className="flex items-center p-2 rounded-lg dark:text-white hover:text-primary dark:hover:bg-gray-700 group text-white"
               >
                 <BsClipboardData />
                 <span className="ml-3">Dashboard</span>
               </Link>
+            </li>
+            <li>
+              <button
+                className="flex items-center p-2 rounded-lg dark:text-white hover:text-white group text-red-500"
+                onClick={signOutHandler}
+              >
+                <VscSignOut />
+                <span className="ml-3">Logout</span>
+              </button>
             </li>
           </ul>
         </div>
