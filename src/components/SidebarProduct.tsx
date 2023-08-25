@@ -9,7 +9,7 @@ const SidebarProduct = ({ category }: any) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+      const response = await fetchData(`${process.env.baseURL}/products`);
       setProducts(response);
     };
     fetchProducts();
