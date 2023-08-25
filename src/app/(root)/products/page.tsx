@@ -11,7 +11,7 @@ import dynamic from "next/dynamic";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Produk",
+  title: "FlowerFavorite | Produk",
   description: "Ini Halaman Produk FavoriteFlowers",
 };
 
@@ -91,7 +91,7 @@ const Product = (): React.ReactElement => {
         sort={sort}
         onSort={onSortHandler}
       />
-      <div className="flex justify-around w-screen md:mt-24">
+      <div className="flex justify-around w-screen mt-4">
         <div className="px-5 md:w-3/4 w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-2">
             {filterSearchProduct.map((product: Product) => (

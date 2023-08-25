@@ -10,7 +10,7 @@ import LoadingDetail from "@/components/LoadingDetail";
 import { usePathname } from "next/navigation";
 
 export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
-  const response = await axios.get(`http://localhost:5000/products/${productId}`);
+  const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
 
   return {
     title: response.data.name,
@@ -51,7 +51,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   useEffect(() => {
     const fetchProductById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/${productId}`);
+        const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
 
         console.log(response);
 
@@ -65,7 +65,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
     fetchProductById();
 
     const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+      const response = await fetchData(`${process.env.baseURL}/products`);
 
       setProducts(response);
       setLoading(false);
@@ -101,7 +101,6 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   const encodedMessage = encodeURIComponent(messageTemplate);
 
   const preFilledLink = `${baseUrl}send/?phone=${phoneNumber}&text=${encodedMessage}`;
-  console.log(preFilledLink);
 
   return (
     <>
@@ -124,7 +123,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
       <div className="container flex flex-row">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4">
           {products.slice(0, maxDisplayedProducts).map((product: ProductProps) => (
-            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} image={product.url} />
+            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} url={product.url} />
           ))}
         </div>
       </div>
