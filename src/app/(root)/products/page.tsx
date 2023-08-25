@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Produk",
+  title: "FlowerFavorite | Produk",
   description: "Ini Halaman Produk FavoriteFlowers",
 };
 
