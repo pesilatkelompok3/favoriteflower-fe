@@ -1,6 +1,11 @@
 import React from "react";
-import ProductCard from "./ProductCard";
 import { formatPrice } from "@/lib/utils";
+import Loading from "@/components/Loading";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
+  loading: () => <Loading />,
+});
 
 const ProductCardList = ({ filteredProduct }: any): React.ReactElement => {
   return (

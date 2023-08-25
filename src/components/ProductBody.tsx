@@ -3,14 +3,8 @@ import React, { useState, useEffect } from "react";
 import { fetchData } from "@/lib/utils";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import { useSearchParams } from "next/navigation";
-import Loading from "@/components/Loading";
 import SidebarProduct from "@/components/SidebarProduct";
-import dynamic from "next/dynamic";
 import ProductCardList from "./Card/ProductCardList";
-
-const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
-  loading: () => <Loading />,
-});
 
 const ProductBody = (): React.ReactElement => {
   const searchParams = useSearchParams();
@@ -23,7 +17,7 @@ const ProductBody = (): React.ReactElement => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
+      const response = await fetchData(`${process.env.apiURL}/products`);
 
       setProducts(response);
     };
