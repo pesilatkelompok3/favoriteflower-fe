@@ -84,49 +84,55 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   const numericPrice = parseFloat(`${product?.price}`);
   const totalPrice = numericPrice * quantity;
 
-  const baseUrl = "https://api.whatsapp.com/";
-  const phoneNumber = "6281234567890";
-
+  const baseWaUrl = `${process.env.WAAPI}`;
+  const phoneNumber = `${process.env.WANUMBER}`;
+  const baseUrl = `${process.env.URL}`;
+  
   const messageTemplate = `
   Halo FavoriteFlower! 👋 Saya ingin memesan barang ${product?.name}.
   
   Apakah barang ini masih tersedia?
   🌸 Jumlah yang diinginkan: ${quantity}
   💰 Harga: ${formatPrice(totalPrice.toString())}
-  🔗 Link Produk: http://localhost:3000${usePathname()}
+  🔗 Link Produk: ${baseUrl}${usePathname()}
   
   Terima kasih banyak! 🚀
   `;
 
   const encodedMessage = encodeURIComponent(messageTemplate);
 
-  const preFilledLink = `${baseUrl}send/?phone=${phoneNumber}&text=${encodedMessage}`;
+  const preFilledLink = `${baseWaUrl}send/?phone=${phoneNumber}&text=${encodedMessage}`;
 
   return (
     <>
-      {product && (
-        <ProductDetailCard
-          key={product.id}
-          imgUrl={product.url}
-          name={product.name}
-          price={formatPrice(totalPrice.toString())}
-          category={product.category}
-          description={product.description}
-          quantity={quantity}
-          setQuantity={handleQuantityChange}
-          waApiLink={preFilledLink}
-        />
+      {!loading && product && (
+        <>
+          <ProductDetailCard
+            key={product.id}
+            imgUrl={product.url}
+            name={product.name}
+            price={formatPrice(totalPrice.toString())}
+            category={product.category}
+            description={product.description}
+            quantity={quantity}
+            setQuantity={handleQuantityChange}
+            waApiLink={preFilledLink}
+          />
+          <div className="w-full h-auto flex justify-center items-center mb-8">
+            <h1 className="mx-4 text-2xl font-bold">Produk Lainnya</h1>
+          </div>
+          <div className="container flex flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4 w-full">
+              {!loading && products
+                .filter((p: ProductProps) => p.id !== product.id) // Exclude the product being viewed
+                .slice(0, maxDisplayedProducts)
+                .map((product: ProductProps) => (
+                  <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} url={product.url} />
+                ))}
+            </div>
+          </div>
+        </>
       )}
-      <div className="w-full h-auto flex justify-center items-center mb-8">
-        <h1 className="mx-4 text-2xl font-bold">Produk Lainnya</h1>
-      </div>
-      <div className="container flex flex-row">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4">
-          {products.slice(0, maxDisplayedProducts).map((product: ProductProps) => (
-            <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} url={product.url} />
-          ))}
-        </div>
-      </div>
     </>
   )
 };

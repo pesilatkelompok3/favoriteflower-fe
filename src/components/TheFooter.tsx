@@ -9,7 +9,7 @@ export default function TheFooter(): ReactElement {
     <Footer container className="text-white bg-black mt-20">
       <div className="w-full text-center lg:mx-48 lg:pt-4 2xl:mx-64">
         <div className="w-full justify-between sm:flex sm:items-start sm:justify-between gap-4">
-          <div>
+          <div className="flex flex-col items-center">
             <h1 className="text-2xl font-bold mb-4">FavoriteFlower</h1>
             <p className="text-sm mb-8 text-justify max-w-xs">
               Lorem ipsum dolor sit amet consectetur. Quis amet ac est
@@ -18,7 +18,7 @@ export default function TheFooter(): ReactElement {
               scelerisque aliquam egestas amet hac diam tincidunt lacus.
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-center">
             <h1 className="text-2xl font-bold mb-4 max-w-xs">Alamat</h1>
             <p className="text-sm mb-8">
               Jl. Cihideung, Kab. Bandung, Lembang, Jawa Barat

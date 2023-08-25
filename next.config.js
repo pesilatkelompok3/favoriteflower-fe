@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   headers: {
     "Access-Control-Allow-Origin": "*",
@@ -6,15 +7,14 @@ const nextConfig = {
   },
   env: {
     baseURL: process.env.BASEURL,
+    URL: process.env.URL,
+    WANUMBER: process.env.WANUMBER,
+    WAAPI: process.env.WAAPI,
+    PATH: process.env.PATH,
   },
   images: {
     domains: ["localhost"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "source.unsplash.com",
-      },
-    ],
+    // domains: [`${process.env.PATH}`], ndabisa pake env ges
     minimumCacheTTL: 15000000,
   },
 };
