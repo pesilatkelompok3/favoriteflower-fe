@@ -30,7 +30,7 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
   useEffect(() => {
     const fetchProductById = (async () => {
       try {
-        const res = await axios.get(`${process.env.baseURL}/products/${id}`);
+        const res = await axios.get(`${process.env.apiURL}/products/${id}`);
         setProduct(res.data);
 
         // Set All Default Value in Form
@@ -57,7 +57,7 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
       formData.append("price", price);
       formData.append("file", selectedFile);
 
-      await axios.patch(`${process.env.baseURL}/products/${id}`, formData, {
+      await axios.patch(`${process.env.apiURL}/products/${id}`, formData, {
         withCredentials: true,
       });
 

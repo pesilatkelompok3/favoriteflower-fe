@@ -10,7 +10,7 @@ import LoadingDetail from "@/components/LoadingDetail";
 import { usePathname } from "next/navigation";
 
 export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
-  const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
+  const response = await axios.get(`${process.env.apiURL}/products/${productId}`);
 
   return {
     title: response.data.name,
@@ -51,7 +51,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   useEffect(() => {
     const fetchProductById = async () => {
       try {
-        const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
+        const response = await axios.get(`${process.env.apiURL}/products/${productId}`);
 
         console.log(response);
 
@@ -65,7 +65,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
     fetchProductById();
 
     const fetchProducts = async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
+      const response = await fetchData(`${process.env.apiURL}/products`);
 
       setProducts(response);
       setLoading(false);
