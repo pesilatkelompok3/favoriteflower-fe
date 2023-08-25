@@ -16,11 +16,12 @@ export default function ProductCard({ id, name, url }: Product) {
       className="w-40 h-40 md:w-52 md:h-44 lg:36 lg:w-52 relative inline-block justify-center rounded-3xl overflow-hidden mr-2 md:mr-4 drop-shadow-lg shadow-black/50 "
     >
       <Image
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover hover:scale-125 transition ease-in-out duration-500"
         src={url}
         width={800}
         height={800}
         alt="Picture of the author"
+        priority
       />
       <div
         className="w-full h-16 absolute bottom-0 pb-1 px-5 flex items-end"
