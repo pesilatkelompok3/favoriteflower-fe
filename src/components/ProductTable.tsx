@@ -29,7 +29,7 @@ const ProductTable = (): React.ReactElement => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
+      const response = await fetchData(`${process.env.apiURL}/products`);
       setProducts(response);
       setPending(false);
     })();
@@ -47,7 +47,7 @@ const ProductTable = (): React.ReactElement => {
       confirmButtonText: "Hapus",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteData(`${process.env.baseURL}/products/${id}`);
+        deleteData(`${process.env.apiURL}/products/${id}`);
         setProducts(products.filter((item: any) => item.id !== id));
         Swal.fire({
           title: "Berhasil!",

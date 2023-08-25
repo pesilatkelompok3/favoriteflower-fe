@@ -36,7 +36,7 @@ export default function ProductUs() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
+      const response = await fetchData(`${process.env.apiURL}/products`);
 
       setProducts(response);
     })();
