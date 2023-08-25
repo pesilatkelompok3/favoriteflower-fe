@@ -26,7 +26,7 @@ export function middleware(req: any) {
   // Jika cookie ada, arahkan pengguna ke halaman admin
   else {
     // Cek apakah pengguna sudah berada di halaman admin
-    if (pathname !== "/admin") {
+    if (!/^\/admin/.test(pathname)) {
       const url = req.nextUrl.clone();
       url.pathname = "/admin";
       return NextResponse.redirect(url, req.url);
@@ -39,5 +39,5 @@ export function middleware(req: any) {
 }
 
 export const config = {
-  matcher: ["/admin", "/login"],
+  matcher: ["/admin/:path*", "/login"],
 };

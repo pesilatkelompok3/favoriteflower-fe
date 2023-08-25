@@ -17,10 +17,14 @@ export default function DefaultForm() {
   }) => {
     console.log("user:", username, "pass", password);
     try {
-      const response = await axios.post(`${process.env.baseURL}/signin`, {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.baseURL}/signin`,
+        {
+          username,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       Alert({
         title: "Berhasil",

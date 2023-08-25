@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-type Product = {
+type ProductProps = {
   id: string;
   name: string;
   price: string;
@@ -12,7 +12,13 @@ type Product = {
   url: string;
 };
 
-const ProductCard = ({ id, name, price, category, url }: Product) => {
+const ProductCard = ({
+  id,
+  name,
+  price,
+  category,
+  url,
+}: ProductProps): React.ReactElement => {
   return (
     <>
       <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
