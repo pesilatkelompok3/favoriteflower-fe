@@ -101,7 +101,6 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   const encodedMessage = encodeURIComponent(messageTemplate);
 
   const preFilledLink = `${baseUrl}send/?phone=${phoneNumber}&text=${encodedMessage}`;
-  console.log(preFilledLink);
 
   return (
     <>

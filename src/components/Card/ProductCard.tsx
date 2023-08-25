@@ -23,6 +23,7 @@ const ProductCard = ({ id, name, price, category, url }: Product) => {
             width={800}
             height={800}
             alt="image"
+            priority
           />
         </div>
 

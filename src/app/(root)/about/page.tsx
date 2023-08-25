@@ -1,9 +1,10 @@
 import { Hero } from "@/components/Hero";
 import { Metadata } from "next";
+
 import AboutComponent from "@/components/About";
 
 export const metadata: Metadata = {
-  title: "Tentang Kami",
+  title: "FlowerFavorite | Tentang Kami",
   description: "Ini Halaman Tentang FavoriteFlowers",
 };
 
