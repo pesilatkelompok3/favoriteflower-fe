@@ -145,7 +145,7 @@ const ProductTable = (): React.ReactElement => {
     };
 
     return (
-      <form className="flex items-center">
+      <form className="flex items-center" onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="simple-search" className="sr-only">
           Search
         </label>
@@ -159,13 +159,15 @@ const ProductTable = (): React.ReactElement => {
             placeholder="Cari berdasarkan nama..."
           />
         </div>
-        <button
-          type="button"
-          className="p-2.5 ml-2 text-sm font-medium text-white bg-red-600 rounded-md hover:text-opacity-70"
-          onClick={handleClear}
-        >
-          Hapus
-        </button>
+        {filterText && (
+          <button
+            type="button"
+            className="p-2.5 ml-2 flex gap-1 text-sm font-medium text-white bg-red-600 rounded-md hover:text-opacity-70"
+            onClick={handleClear}
+          >
+            Hapus <span>Pencarian</span>
+          </button>
+        )}
       </form>
     );
   }, [filterText, resetPaginationToggle]);

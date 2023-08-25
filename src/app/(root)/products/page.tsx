@@ -31,7 +31,7 @@ const Product = (): React.ReactElement => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+      const response = await fetchData(`${process.env.baseURL}/products`);
 
       setProducts(response);
     };
@@ -92,7 +92,7 @@ const Product = (): React.ReactElement => {
         sort={sort}
         onSort={onSortHandler}
       />
-      <div className="flex justify-around w-screen md:mt-24">
+      <div className="flex justify-around w-screen mt-4">
         <div className="px-5 md:w-3/4 w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-2">
             {filterSearchProduct.map((product: Product) => (
