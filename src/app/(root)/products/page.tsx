@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { fetchData, formatPrice } from "@/lib/utils";
-
 import { Hero } from "@/components/Hero";
 import ProductHead from "@/components/Home/productUs/ProductHead";
 import { useSearchParams } from "next/navigation";
@@ -31,7 +30,7 @@ const Product = (): React.ReactElement => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+      const response = await fetchData(`${process.env.baseURL}/products`);
 
       setProducts(response);
     };
