@@ -33,21 +33,21 @@ const Testimonial = () => {
   const datas = [
     {
       id: "1",
-      name: "cokendi",
+      name: "Jane Marry",
       comment:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eligendi, dicta possimus undedeserunt autem ipsa quam vel ratione nemo.",
+        "Product quality is good and price is affordable.",
     },
     {
       id: "2",
-      name: "agato",
+      name: "Sarah Voila",
       comment:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eligendi, dicta possimus undedeserunt autem ipsa quam vel ratione nemo.",
+        "Nice product. I recommend it.",
     },
     {
       id: "3",
-      name: "dachi",
+      name: "Deborah Amanda",
       comment:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eligendi, dicta possimus undedeserunt autem ipsa quam vel ratione nemo.",
+        "I love this product. I hope I can buy more if there is stock!! #loveit",
     },
   ];
 
@@ -58,7 +58,7 @@ const Testimonial = () => {
         <h1 className="mx-4 text-lg font-bold underline">Testimoni</h1>
         <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
       </div>
-      <div className="w-full h-[372px] relative md:px-28 flex items-center">
+      <div className="w-full h-[372px] relative md:px-28 flex items-center mb-8">
         <div onClick={scrollLeft} className="absolute left-0 top-0 w-12 h-full z-30 md:hidden"></div>
         <div onClick={scrollRight} className="absolute right-0 top-0 w-12 h-full z-30 md:hidden"></div>
         <div
@@ -68,7 +68,7 @@ const Testimonial = () => {
         >
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
           {datas.map((data) => (
-            <TestimonialCard key={data.id} dataKomen={data} />
+            <TestimonialCard key={data.id} dataComment={data} />
           ))}
         </div>
       </div>

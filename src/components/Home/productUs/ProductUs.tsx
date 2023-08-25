@@ -36,7 +36,7 @@ export default function ProductUs() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetchData(`http://localhost:5000/products`);
+      const response = await fetchData(`${process.env.baseURL}/products`);
 
       setProducts(response);
     })();
