@@ -18,7 +18,7 @@ const ProductDetailCard = ({ name, price, category, description, imgUrl, setQuan
 
   return (
     <div className="container my-8 lg:my-24">
-      <div className="flex flex-col lg:flex-row items-center lg:gap-8 justify-center">
+      <div className="flex flex-col lg:flex-row lg:gap-8 justify-center">
         <div className="w-full h-80 lg:w-96 lg:h-96 relative inline-block justify-center rounded-sm overflow-hidden ml-2 first:ml-0 hover:scale-105 hover:shadow-2xl ease-in duration-300 cursor-pointer">
           <Image src={imgUrl} width={800} height={800} alt="Img" className="w-full h-full object-cover" priority />
         </div>

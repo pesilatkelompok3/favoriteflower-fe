@@ -30,7 +30,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
       formData.append("file", selectedFile);
 
       await postData({
-        url: `${process.env.baseURL}/products`,
+        url: `${process.env.apiURL}/products`,
         data: formData,
       });
       Alert({
@@ -38,11 +38,10 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
         text: "Data berhasil ditambahkan",
         icon: "success",
       });
-      setProduct("");
-      setCategory("");
-      setPrice("");
-      setDescription("");
-      setSelectedFile("");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     };
 
     return (

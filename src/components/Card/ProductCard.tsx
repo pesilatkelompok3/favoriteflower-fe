@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-type Product = {
+type ProductProps = {
   id: string;
   name: string;
   price: string;
@@ -12,10 +12,16 @@ type Product = {
   url: string;
 };
 
-const ProductCard = ({ id, name, price, category, url }: Product) => {
+const ProductCard = ({
+  id,
+  name,
+  price,
+  category,
+  url,
+}: ProductProps): React.ReactElement => {
   return (
-    <>
-      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden ">
+    <div className="mb-4">
+      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden">
         <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
             className="rounded-lg h-36 lg:h-72 m-auto w-full object-cover"
@@ -49,7 +55,7 @@ const ProductCard = ({ id, name, price, category, url }: Product) => {
           <p className="font-medium">{price}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

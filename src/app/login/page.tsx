@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import LoginInput from "@/components/LoginInput";
 import Alert from "@/components/Alert";
+import Swal from "sweetalert2";
 
 export default function DefaultForm() {
   const router = useRouter();
@@ -18,23 +19,21 @@ export default function DefaultForm() {
     console.log("user:", username, "pass", password);
     try {
       const response = await axios.post(
-        `${process.env.baseURL}/signin`,
+        `${process.env.apiURL}/signin`,
         {
           username,
           password,
         },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
 
-      Alert({
-        title: "Berhasil",
+      Swal.fire({
+        title: response.statusText,
         text: response.data.message,
         icon: "success",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
       });
 
       router.push("/admin");

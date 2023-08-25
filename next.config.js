@@ -7,10 +7,10 @@ const nextConfig = {
   },
   env: {
     baseURL: process.env.BASEURL,
-    URL: process.env.URL,
-    WANUMBER: process.env.WANUMBER,
-    WAAPI: process.env.WAAPI,
-    PATH: process.env.PATH,
+    apiURL: process.env.APIURL,
+    waNUMBER: process.env.WANUMBER,
+    waAPI: process.env.WAAPI,
+    // PATH: process.env.PATH,
   },
   images: {
     domains: ["localhost"],

@@ -12,7 +12,7 @@ const Sidebar = (): React.ReactElement => {
   const router = useRouter();
 
   const signOutHandler = async () => {
-    await signOut(`${process.env.baseURL}/signout`);
+    await signOut(`${process.env.apiURL}/signout`);
     router.refresh();
   };
 

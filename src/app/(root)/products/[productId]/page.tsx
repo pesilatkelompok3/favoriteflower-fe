@@ -9,18 +9,22 @@ import Loading from "@/components/Loading";
 import LoadingDetail from "@/components/LoadingDetail";
 import { usePathname } from "next/navigation";
 
-export async function generateMetaData({ params: { productId } }: ProductParams): Promise<Metadata> {
-  const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
+export async function generateMetaData({
+  params: { productId },
+}: ProductParams): Promise<Metadata> {
+  const response = await axios.get(
+    `${process.env.apiURL}/products/${productId}`
+  );
 
   return {
     title: response.data.name,
-    description: response.data.description
-  }
+    description: response.data.description,
+  };
 }
 
 type ProductParams = {
   params: {
-    productId: string
+    productId: string;
   };
 };
 
@@ -34,16 +38,21 @@ type ProductProps = {
   quantity: number;
   setQuantity: (value: number) => void;
   loading: boolean;
-}
+};
 
 const ProductCard = dynamic(() => import("@/components/Card/ProductCard"), {
   loading: () => <Loading />,
-})
-const ProductDetailCard = dynamic(() => import("@/components/Card/ProductDetailCard"), {
-  loading: () => <LoadingDetail />,
-})
+});
+const ProductDetailCard = dynamic(
+  () => import("@/components/Card/ProductDetailCard"),
+  {
+    loading: () => <LoadingDetail />,
+  }
+);
 
-const Product = ({ params: { productId } }: ProductParams): React.ReactElement => {
+const Product = ({
+  params: { productId },
+}: ProductParams): React.ReactElement => {
   const [product, setProduct] = useState<ProductProps | null>(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +60,9 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   useEffect(() => {
     const fetchProductById = async () => {
       try {
-        const response = await axios.get(`${process.env.baseURL}/products/${productId}`);
+        const response = await axios.get(
+          `${process.env.apiURL}/products/${productId}`
+        );
 
         console.log(response);
 
@@ -65,7 +76,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
     fetchProductById();
 
     const fetchProducts = async () => {
-      const response = await fetchData(`${process.env.baseURL}/products`);
+      const response = await fetchData(`${process.env.apiURL}/products`);
 
       setProducts(response);
       setLoading(false);
@@ -84,9 +95,9 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   const numericPrice = parseFloat(`${product?.price}`);
   const totalPrice = numericPrice * quantity;
 
-  const baseWaUrl = `${process.env.WAAPI}`;
-  const phoneNumber = `${process.env.WANUMBER}`;
-  const baseUrl = `${process.env.URL}`;
+  const baseWaUrl = `${process.env.waAPI}`;
+  const phoneNumber = `${process.env.waNUMBER}`;
+  const baseUrl = `${process.env.baseURL}`;
   
   const messageTemplate = `
   Halo FavoriteFlower! 👋 Saya ingin memesan barang ${product?.name}.
@@ -124,17 +135,26 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
           <div className="container flex flex-row">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4 w-full">
               {!loading && products
+            
                 .filter((p: ProductProps) => p.id !== product.id) // Exclude the product being viewed
                 .slice(0, maxDisplayedProducts)
-                .map((product: ProductProps) => (
-                  <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} url={product.url} />
-                ))}
+                
+            .map((product: ProductProps) => (
+                    <ProductCard
+                key={product.id}
+                name={product.name}
+                price={formatPrice(product.price)}
+                id={product.id}
+                category={product.category}
+                url={product.url}
+              />
+                  ))}
             </div>
           </div>
         </>
       )}
     </>
-  )
+  );
 };
 
-export default Product
+export default Product;
