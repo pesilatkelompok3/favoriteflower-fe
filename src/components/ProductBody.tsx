@@ -77,7 +77,7 @@ const ProductBody = (): React.ReactElement => {
         sort={sort}
         onSort={onSortHandler}
       />
-      <div className="flex justify-around w-screen md:mt-24">
+      <div className="flex justify-around w-screen mt-5 md:mt-24">
         <div className="px-5 md:w-3/4 w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-2">
             <ProductCardList filteredProduct={filterSearchProduct} />
