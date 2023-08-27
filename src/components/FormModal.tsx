@@ -1,5 +1,12 @@
 "use client";
-import { Label, Modal, TextInput, Textarea, FileInput } from "flowbite-react";
+import {
+  Label,
+  Modal,
+  TextInput,
+  Textarea,
+  FileInput,
+  Avatar,
+} from "flowbite-react";
 import Button from "./Button";
 import { postData } from "@/lib/utils";
 import { useState } from "react";
@@ -17,6 +24,16 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [selectedFile, setSelectedFile] = useState("");
+    const [image, setImage] = useState<string | null>(null);
+
+    const handleFileChange = (e: any) => {
+      const file = e.target.files[0];
+      if (file) {
+        setSelectedFile(file as any);
+        const imageUrl = URL.createObjectURL(file);
+        setImage(imageUrl);
+      }
+    };
 
     const submitHandler = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -60,7 +77,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
             >
               <div>
                 <div className="mb-2 block mt-2">
-                  <Label htmlFor="productName" value="Nama Produk" />
+                  <Label htmlFor="productName" value="Nama Produk" className="font-semibold" />
                 </div>
                 <TextInput
                   id="productName"
@@ -73,7 +90,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
               </div>
               <div>
                 <div className="mb-2 block mt-2">
-                  <Label htmlFor="productPrice" value="Harga Produk" />
+                  <Label htmlFor="productPrice" value="Harga Produk" className="font-semibold" />
                 </div>
                 <TextInput
                   id="productPrice"
@@ -87,7 +104,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
               </div>
               <div>
                 <div className="mb-2 block mt-2">
-                  <Label htmlFor="categoryProduct" value="Jenis Produk" />
+                  <Label htmlFor="categoryProduct" value="Jenis Produk" className="font-semibold" />
                 </div>
                 <TextInput
                   id="categoryProduct"
@@ -100,7 +117,7 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
               </div>
               <div>
                 <div className="mb-2 block mt-2">
-                  <Label htmlFor="descProduct" value="Deskripsi Produk" />
+                  <Label htmlFor="descProduct" value="Deskripsi Produk" className="font-semibold" />
                 </div>
                 <Textarea
                   id="descProduct"
@@ -114,16 +131,33 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
               </div>
               <div className="max-w-md" id="fileUpload">
                 <div className="mb-2 block mt-2">
-                  <Label htmlFor="file" value="Gambar Produk" />
+                  <Label htmlFor="file" value="Gambar Produk" className="font-semibold"/>
                 </div>
                 <FileInput
-                  helperText="Tambahkan gambar produk untuk informasi pelanggan."
+                  helperText="Gambar Produk akan ditampilkan di halaman produk. Silahkan masukkan 1 Gambar produk dengan kualitas yang pas."
                   accept="file"
                   name="file"
-                  onChange={(e: any) => setSelectedFile(e.target.files[0])}
+                  onChange={handleFileChange}
                   id="file"
                   required
                 />
+              </div>
+              <div className="max-w-md mt-2">
+                <p className="text-gray-500">Preview Gambar</p>
+                {!selectedFile ? (
+                  <p className="text-red-500 mt-1 text-sm">
+                    Tidak ada gambar saat ini. Mohon isi gambar agar preview
+                    berjalan.
+                  </p>
+                ) : (
+                  <Avatar
+                    className="rounded-md mt-2"
+                    alt="cardImage"
+                    img={image as string}
+                    // size={40}
+                    size={40}
+                  />
+                )}
               </div>
               <Button
                 buttonType="submit"
