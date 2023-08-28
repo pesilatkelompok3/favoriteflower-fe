@@ -5,6 +5,8 @@ import { fetchData } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 type Product = {
   id: string;
@@ -36,6 +38,11 @@ export default function ProductUs() {
 
   useEffect(() => {
     (async () => {
+      Aos.init({
+        delay: 0,
+        duration: 400,
+      });
+
       const response = await fetchData(`${process.env.apiURL}/products`);
 
       setProducts(response);
@@ -69,7 +76,11 @@ export default function ProductUs() {
           {/* <ProductCard name /> */}
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
           {products.slice(0, maxDisplayedProducts).map((product: Product) => (
-            <Link href={`/products/${product.id}`} key={product.id}>
+            <Link
+              href={`/products/${product.id}`}
+              key={product.id}
+              data-aos="fade-down"
+            >
               <ProductCard
                 id={product.id}
                 name={product.name}

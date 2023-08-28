@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+// import Aos from "aos";
+// import "aos/dist/aos.css";
 
 type ApiProps = {
   url: string;
@@ -175,3 +177,5 @@ export const formatPrice = (price: string) => {
     currency: "IDR",
   });
 };
+
+// export const AnimateOnScroll = () => useEffect(() => Aos.init({delay: 0, duration: 400}));

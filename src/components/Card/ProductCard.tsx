@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 type ProductProps = {
   id: string;
@@ -19,9 +21,15 @@ const ProductCard = ({
   category,
   url,
 }: ProductProps): React.ReactElement => {
+  useEffect(() => {
+    Aos.init({
+      delay: 0,
+      duration: 500,
+    });
+  });
   return (
     <div className="mb-4">
-      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden">
+      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden" data-aos="fade-zoom-in">
         <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
             className="rounded-lg h-36 lg:h-72 m-auto w-full object-cover"
