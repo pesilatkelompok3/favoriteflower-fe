@@ -1,4 +1,4 @@
-import Swal, { SweetAlertArrayOptions, SweetAlertIcon } from "sweetalert2";
+import Swal, { SweetAlertIcon } from "sweetalert2";
 
 type AlertProps = {
   title: string;
