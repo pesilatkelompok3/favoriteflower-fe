@@ -81,22 +81,19 @@ const Navbar = (): React.ReactElement => {
                 : "w-full md:block md:w-auto absolute md:static"
             }`}
           >
-            <ul className="w-full flex flex-col bg-gray-900 bg-opacity-80 p-2 mt-[204px] rounded-b-lg pb-3 border-black border-t md:bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:items-center">
+            <ul className="w-full flex flex-col bg-gray-900 bg-opacity-80 p-2 mt-[175px] border-black border-t rounded-b-lg pb-3 md:bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:items-center">
               <li className="mb-4 md:mb-0 hover:text-primary text-lg">
                 <Link href="/">Beranda</Link>
               </li>
               <li className="mb-4 md:mb-0 hover:text-primary text-lg">
-                <Link href="/about">Tentang Kami</Link>
-              </li>
-              <li className="mb-4 md:mb-0 hover:text-primary text-lg">
-                <Link href="/products">Produk</Link>
+                <Link href="/products">Produk Kami</Link>
               </li>
               <li>
                 <ContactButton
                   buttonType="button"
                   className="bg-green-400 w-full px-2 h-[28px] rounded-md cursor-pointer flex justify-center items-center hover:bg-green-500 text-white"
                   clickHandler={() => {
-                    location.href = "https://wa.me/6281234567890";
+                    location.href = `https://wa.me/${process.env.waNUMBER}`;
                   }}
                 >
                   <BsWhatsapp className="mr-1" />
