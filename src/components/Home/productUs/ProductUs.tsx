@@ -5,6 +5,7 @@ import { fetchData } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -16,7 +17,8 @@ type Product = {
 
 export default function ProductUs() {
   const cardContainerRef = useRef<HTMLDivElement>(null);
-
+  const router = useRouter();
+  const [isEndReached, setIsEndReached] = useState(false);
   const scrollLeft = () => {
     if (cardContainerRef.current) {
       cardContainerRef.current.scrollLeft -= 336;
@@ -36,6 +38,13 @@ export default function ProductUs() {
   };
   const [products, setProducts] = useState([]);
 
+  const handleScroll = () => {
+    if (cardContainerRef.current) {
+      const { scrollWidth, scrollLeft, clientWidth } = cardContainerRef.current;
+      setIsEndReached(scrollWidth - scrollLeft <= clientWidth + 10);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       Aos.init({
@@ -48,6 +57,14 @@ export default function ProductUs() {
       setProducts(response);
     })();
     // fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const containerRef = cardContainerRef.current;
+    if (containerRef) {
+      containerRef.addEventListener("scroll", handleScroll);
+      return () => containerRef.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const maxDisplayedProducts = 8;
@@ -64,30 +81,40 @@ export default function ProductUs() {
           onClick={scrollLeft}
           className="absolute left-10 text-4xl cursor-pointer hover:scale-110 hidden md:block"
         />
-        <BsArrowRightCircle
-          onClick={scrollRight}
-          className="absolute right-10 text-4xl cursor-pointer hover:scale-110 hidden md:block"
-        />
+        {!isEndReached ? (
+          <BsArrowRightCircle
+            onClick={scrollRight}
+            className="absolute right-10 text-4xl cursor-pointer hover:scale-110 hidden md:block"
+          />
+        ) : (
+          <p
+            className="text-center absolute right-5 font-semibold h-1/2 flex items-center  cursor-pointer hover:scale-125 transition ease-out duration-500"
+            onClick={() => router.push("/products")}
+          >
+            Selengkapnya
+          </p>
+        )}
         <div
           ref={cardContainerRef}
           className="w-full h-auto md:p-4  whitespace-nowrap scroll-auto overflow-x-auto"
           style={cardListStyle}
         >
-          {/* <ProductCard name /> */}
           <style>{`::-webkit-scrollbar { display: none; }`}</style>
-          {products.slice(0, maxDisplayedProducts).map((product: Product) => (
-            <Link
-              href={`/products/${product.id}`}
-              key={product.id}
-              data-aos="fade-down"
-            >
-              <ProductCard
-                id={product.id}
-                name={product.name}
-                url={product.url}
-              />
-            </Link>
-          ))}
+          {products.slice(0, maxDisplayedProducts).map((product: Product) => {
+            return (
+              <Link
+                href={`/products/${product.id}`}
+                key={product.id}
+                data-aos="fade-down"
+              >
+                <ProductCard
+                  id={product.id}
+                  name={product.name}
+                  url={product.url}
+                />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
