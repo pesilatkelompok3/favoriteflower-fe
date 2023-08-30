@@ -69,8 +69,13 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
 
       router.push("/admin");
     } catch (err: any) {
-      alert(err.message);
+      Alert({
+        title: "Edit Gagal",
+        text: err.response.data.message,
+        icon: "error",
+      });
       console.log(err);
+      return err;
     }
   };
 

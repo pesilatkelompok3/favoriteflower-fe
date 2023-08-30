@@ -1,8 +1,27 @@
 "use client";
 
 import Button from "@/components/Button";
+import { useState } from "react";
 
 const ContactUs = () => {
+  const [name, setName] = useState<string>("");
+  const [message, setmessage] = useState<string>("");
+
+  const submitHandlerForm = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    console.log({
+      name,
+      message,
+    });
+
+    const templateMessage = `Halo FavoriteFlower! Nama saya ${name} saya ingin berpesan tentang ${message}.`;
+
+    window.open(
+      `${process.env.waAPI}/send/?phone=${process.env.waNUMBER}&text=${templateMessage}`,
+      "_blank"
+    );
+  };
   return (
     <>
       <div className="w-full h-auto flex justify-center items-center">
@@ -23,9 +42,12 @@ const ContactUs = () => {
           ></iframe>
         </div>
 
-        <form action={""} method="post">
+        <form method="post" onSubmit={submitHandlerForm}>
           <div className="mb-6 md:w-[500px]">
-            <label htmlFor="default-input" className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+            <label
+              htmlFor="default-input"
+              className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+            >
               Nama Anda
             </label>
             <input
@@ -33,11 +55,16 @@ const ContactUs = () => {
               id="default-input"
               className="bg-gray-50 border border-gray-800 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Nama Anda"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
           <div className="mb-6 md:w-[500px]">
-            <label htmlFor="message" className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+            <label
+              htmlFor="message"
+              className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+            >
               Pesan
             </label>
             <textarea
@@ -45,12 +72,13 @@ const ContactUs = () => {
               rows={4}
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-800 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Apa pesan yang ingin anda sampaikan?"
+              value={message}
+              onChange={(e) => setmessage(e.target.value)}
             ></textarea>
           </div>
           <div className="mb-6">
             <Button
               buttonType="submit"
-              clickHandler={() => {}}
               className="bg-green-400 w-full px-2 h-[38px] rounded-md cursor-pointer flex justify-center items-center hover:bg-green-500 text-white"
             >
               Kirim

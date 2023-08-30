@@ -41,25 +41,16 @@ const ProductTable = (): React.ReactElement => {
       text: "Apakah anda yakin ingin menghapus Produk ini ?",
       icon: "warning",
       showCancelButton: true,
-      cancelButtonColor: "#eb4034",
+      cancelButtonColor: "#2249d6",
       cancelButtonText: "Batal",
-      confirmButtonColor: "#2ccf23",
+      confirmButtonColor: "#de211b",
       confirmButtonText: "Hapus",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteData(`${process.env.apiURL}/products/${id}`);
         setProducts(products.filter((item: any) => item.id !== id));
-        Swal.fire({
-          title: "Berhasil!",
-          text: "Produk berhasil dihapus",
-          icon: "success",
-        });
       } else if (result.isDismissed) {
-        Swal.fire({
-          title: "Batal!",
-          text: "Produk batal dihapus",
-          icon: "error",
-        });
+        console.log("Dibatalkan");
       }
     });
   };
@@ -69,7 +60,7 @@ const ProductTable = (): React.ReactElement => {
       item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
   );
 
-  const filteredId = products.findIndex((item: any) => item === item.id);
+  // const filteredId = products.findIndex((item: any) => item === item.id);
 
   const imageElement = (url: string) => {
     return (
