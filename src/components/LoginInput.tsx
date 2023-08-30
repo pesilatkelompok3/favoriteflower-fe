@@ -22,9 +22,9 @@ export default function LoginInput({ onLogin }: LoginInputProps) {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-10">
+    <div className="w-full h-full flex flex-col items-center justify-center space-y-2">
       <h1 className="text-lg font-bold md:text-xl lg:text-3xl">
-        Login Favorite<span className="text-primary">Flower</span>
+        Favorite<span className="text-primary">Flower</span>
       </h1>
       <form
         className="w-1/2 flex max-w-md flex-col gap-4"

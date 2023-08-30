@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-// import Aos from "aos";
-// import "aos/dist/aos.css";
+import Alert from "@/components/Alert";
 
 type ApiProps = {
   url: string;
@@ -42,18 +41,32 @@ export const postData = async ({
     const postData = await axios.post(url, data, {
       headers: {
         "Content-Type": "multipart/form-data",
-        // "Accept": "application/json",
       },
       withCredentials: true,
     });
 
-    // alert("Data Berhasil Ditambahkan.");
-    console.log("Data successfully added.");
+    Alert({
+      title: "Berhasil",
+      text: "Data ditambahkan. Silahkan tambah data lainnya jika ada.",
+      icon: "success",
+    });
+
     return postData;
   } catch (err: ApiProps["errResponse"]) {
-    console.log(err);
-    // alert("Data gagal ditambahkan.");
-    console.log("access denied: ", err.message);
+    Alert({
+      title: err.response.statusText,
+      text: err?.response.data.msg,
+      icon: "error",
+    });
+    
+    console.log("access denied: ", err);
+
+    if (err.response.status === 401) {
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 3000);
+    }
+
     return err.message;
   }
 };
@@ -63,8 +76,28 @@ export const deleteData = async (url: ApiProps["url"]) => {
     const deleteData = await axios.delete(url, {
       withCredentials: true,
     });
+
+    Alert({
+      title: "Berhasil!",
+      text: "Produk berhasil dihapus",
+      icon: "success",
+    });
+
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {
+
+    Alert({
+      title: "Gagal Dihapus!",
+      text: err?.response.data.msg,
+      icon: "error",
+    });
+
+    if (err.response.status === 401) {
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 3000);
+    }
+    
     return err.message;
   }
 };

@@ -73,7 +73,7 @@ export default function ProductUs() {
     <div className="w-full h-auto bg-white px-4 md:px-16 pt-3">
       <div className="w-full h-auto flex justify-center items-center">
         <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
-        <h1 className="mx-4 text-lg font-bold underline">Product Kami</h1>
+        <h1 className="mx-4 text-lg font-bold underline">Produk Kami</h1>
         <div className="w-24 md:w-96 bg-black" style={{ height: "1px" }}></div>
       </div>
       <div className="w-full h-52 md:h-72 relative md:px-28 flex items-center">

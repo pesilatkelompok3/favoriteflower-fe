@@ -50,15 +50,6 @@ const FormModal = ({ props, setProps }: FormModalProps["openModal"]) =>
         url: `${process.env.apiURL}/products`,
         data: formData,
       });
-      Alert({
-        title: "Berhasil",
-        text: "Data berhasil ditambahkan",
-        icon: "success",
-      });
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
     };
 
     return (
