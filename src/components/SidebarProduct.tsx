@@ -45,7 +45,7 @@ const SidebarProduct = ({ category }: any) => {
   };
 
   return (
-    <div className="w-1/4 hidden md:block lg:block  ">
+    <div className="hidden md:block lg:block">
       <div className="border-b-4 border-primary pb-2 w-56">
         <h2 className="md:text-xl lg:text-2xl text-end font-semibold">
           Kategori
