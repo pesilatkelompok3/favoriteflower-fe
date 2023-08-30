@@ -69,7 +69,7 @@ const Navbar = (): React.ReactElement => {
         ></div>
         <div className={navStyle}>
           <Link href="/" className="px-4 py-1">
-            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">FavoriteFlower</span>
+            <span className="font-semibold text-2xl drop-shadow-2xl shadow-black">Favorite<span className="text-primary">Flower</span></span>
           </Link>
           <Button className="relative z-20" buttonType="button" clickHandler={setToggle}>
             <RxHamburgerMenu className="cursor-pointer h-[24px] w-[24px] mx-2 md:hidden" />

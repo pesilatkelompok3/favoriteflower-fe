@@ -3,7 +3,7 @@ import ProductBody from "@/components/ProductBody";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FavoriteFlower | Produk",
+  title: "FavoriteFlower | Semua Produk",
   description: "Ini Halaman Produk FavoriteFlowers",
 };
 

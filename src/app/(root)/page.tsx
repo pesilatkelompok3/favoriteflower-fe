@@ -6,7 +6,7 @@ import { Hero } from "@/components/Hero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FlowerFavorite",
+  title: "FavoriteFlower",
   description: "Ini Halaman Beranda FavoriteFlowers",
 };
 
