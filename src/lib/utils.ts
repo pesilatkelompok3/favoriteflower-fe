@@ -53,19 +53,19 @@ export const postData = async ({
 
     return postData;
   } catch (err: ApiProps["errResponse"]) {
-    Alert({
-      title: err.response.statusText,
-      text: err?.response.data.msg,
-      icon: "error",
-    });
-    
-    console.log("access denied: ", err);
 
-    if (err.response.status === 401) {
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 3000);
+    if (
+      err.response.status === 401 &&
+      err.response.data.message === "Token has expired"
+    ) {
+      Alert({
+        title: err.response.statusText,
+        text: "Terjadi kesalahan saat menambahkan data. Silahkan login kembali.",
+        icon: "error",
+      });
     }
+
+    console.log(err.response.data.message);
 
     return err.message;
   }
@@ -85,19 +85,21 @@ export const deleteData = async (url: ApiProps["url"]) => {
 
     return deleteData;
   } catch (err: ApiProps["errResponse"]) {
+    console.log(err);
 
-    Alert({
-      title: "Gagal Dihapus!",
-      text: err?.response.data.msg,
-      icon: "error",
-    });
-
-    if (err.response.status === 401) {
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 3000);
+    if (
+      err.response.status === 401 &&
+      err.response.data.message === "Token has expired"
+    ) {
+      Alert({
+        title: err.response.statusText,
+        text: "Terjadi kesalahan saat menghapus data. Silahkan login kembali.",
+        icon: "error",
+      });
     }
-    
+
+    console.log(err.response.data.message);
+
     return err.message;
   }
 };

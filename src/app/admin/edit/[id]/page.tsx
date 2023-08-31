@@ -69,11 +69,16 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
 
       router.push("/admin");
     } catch (err: any) {
-      Alert({
-        title: "Edit Gagal",
-        text: err.response.data.message,
-        icon: "error",
-      });
+      if (
+        err.response.status === 401 &&
+        err.response.data.message === "Token has expired"
+      ) {
+        Alert({
+          title: err.response.statusText,
+          text: "Terjadi kesalahan saat mengedit data. Silahkan login kembali.",
+          icon: "error",
+        });
+      }
       console.log(err);
       return err;
     }
