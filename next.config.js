@@ -13,7 +13,7 @@ const nextConfig = {
     // PATH: process.env.PATH,
   },
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "source.unsplash.com"],
     // domains: [`${process.env.PATH}`], ndabisa pake env ges
     minimumCacheTTL: 15000000,
   },

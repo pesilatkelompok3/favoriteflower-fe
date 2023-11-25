@@ -26,9 +26,7 @@ const About = () => {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime
           adipisci amet atque voluptatem laudantium dolorum sint voluptates,
           quisquam corrupti sapiente, veniam tenetur! Cum, consequatur ab porro
-          reprehenderit cupiditate inventore quam rerum facilis, unde nostrum
-          dolores qui, consequuntur dolor. Ullam sunt laboriosam adipisci
-          voluptate, explicabo sequi dolores in dolorem repudiandae rerum.
+          reprehenderit.
         </p>
       </div>
       <div className="mt-8 flex flex-col items-center md:flex-row md:justify-center md:gap-8 md:flex-wrap">
