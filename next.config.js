@@ -13,10 +13,18 @@ const nextConfig = {
     // PATH: process.env.PATH,
   },
   images: {
-    domains: ["localhost"],
-    // domains: [`${process.env.PATH}`], ndabisa pake env ges
-    minimumCacheTTL: 15000000,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+        port: '',
+        pathname: '/**',
+      }
+    ]
   },
-};
+  domains: ["localhost"],
+  // domains: [`${process.env.PATH}`], ndabisa pake env ges
+  minimumCacheTTL: 15000000,
+}
 
 module.exports = nextConfig;
