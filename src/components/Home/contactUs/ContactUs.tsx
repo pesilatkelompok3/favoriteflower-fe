@@ -48,7 +48,7 @@ const ContactUs = () => {
               htmlFor="default-input"
               className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
             >
-              Nama Anda
+              Nama
             </label>
             <input
               type="text"

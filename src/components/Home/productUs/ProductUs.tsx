@@ -88,7 +88,7 @@ export default function ProductUs() {
           />
         ) : (
           <p
-            className="text-center absolute right-5 font-semibold h-1/2 flex items-center  cursor-pointer hover:scale-125 transition ease-out duration-500"
+            className="text-center absolute right-4 font-semibold h-1/2 flex items-center  cursor-pointer hover:scale-125 transition ease-out duration-500 hover:text-primary"
             onClick={() => router.push("/products")}
           >
             Selengkapnya

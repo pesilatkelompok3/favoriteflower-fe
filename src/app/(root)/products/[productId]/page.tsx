@@ -9,7 +9,7 @@ import Loading from "@/components/Loading";
 import LoadingDetail from "@/components/LoadingDetail";
 import { usePathname } from "next/navigation";
 
-export async function generateMetaData({
+export async function generateMetadata({
   params: { productId },
 }: ProductParams): Promise<Metadata> {
   const response = await axios.get(
@@ -98,7 +98,7 @@ const Product = ({
   const baseWaUrl = `${process.env.waAPI}`;
   const phoneNumber = `${process.env.waNUMBER}`;
   const baseUrl = `${process.env.baseURL}`;
-  
+
   const messageTemplate = `
   Halo FavoriteFlower! 👋 Saya ingin memesan barang ${product?.name}.
   
@@ -134,20 +134,21 @@ const Product = ({
           </div>
           <div className="container flex flex-row">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-4 w-full">
-              {!loading && products
-            
-                .filter((p: ProductProps) => p.id !== product.id) // Exclude the product being viewed
-                .slice(0, maxDisplayedProducts)
-                
-            .map((product: ProductProps) => (
+              {!loading &&
+                products
+
+                  .filter((p: ProductProps) => p.id !== product.id) // Exclude the product being viewed
+                  .slice(0, maxDisplayedProducts)
+
+                  .map((product: ProductProps) => (
                     <ProductCard
-                key={product.id}
-                name={product.name}
-                price={formatPrice(product.price)}
-                id={product.id}
-                category={product.category}
-                url={product.url}
-              />
+                      key={product.id}
+                      name={product.name}
+                      price={formatPrice(product.price)}
+                      id={product.id}
+                      category={product.category}
+                      url={product.url}
+                    />
                   ))}
             </div>
           </div>

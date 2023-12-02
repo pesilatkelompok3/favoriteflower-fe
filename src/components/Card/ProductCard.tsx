@@ -29,7 +29,10 @@ const ProductCard = ({
   });
   return (
     <div className="mb-4">
-      <div className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden" data-aos="fade-zoom-in">
+      <div
+        className="relative h-full w-full bg-base border border-gray-200 rounded-lg shadow-gray-700 overflow-hidden"
+        data-aos="fade-zoom-in"
+      >
         <div className="block hover:scale-125 transition ease-in-out duration-500">
           <Image
             className="rounded-lg h-36 lg:h-72 m-auto w-full object-cover"
@@ -48,11 +51,11 @@ const ProductCard = ({
             </h5>
           </div>
           <p className="lg:mb-2 truncate">{category}</p>
-          <div className=" flex justify-between items-center lg:gap-1">
-            <p className="font-medium ">{price}</p>
+          <div className=" flex justify-between items-center lg:space-x-4">
+            <p className="font-medium truncate" title={price}>{price}</p>
             <Link
               href={`/products/${id}`}
-              className="md:text-md bg-primary w-1/4 md:w-1/2  md:h-full text-center rounded-xl text-white p-1  hover:text-black"
+              className="md:text-md bg-primary w-1/4 transition ease-in-out delay-50 hover:scale-105 md:w-1/2  md:h-full text-center rounded-xl text-white p-1  hover:drop-shadow-md"
             >
               Pesan
             </Link>

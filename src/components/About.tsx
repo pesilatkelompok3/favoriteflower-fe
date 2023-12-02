@@ -23,15 +23,10 @@ const About = () => {
       </div>
       <div className="flex gap-4 justify-center">
         <p className="my-8 text-center max-w-6xl">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime
-          adipisci amet atque voluptatem laudantium dolorum sint voluptates,
-          quisquam corrupti sapiente, veniam tenetur! Cum, consequatur ab porro
-          reprehenderit cupiditate inventore quam rerum facilis, unde nostrum
-          dolores qui, consequuntur dolor. Ullam sunt laboriosam adipisci
-          voluptate, explicabo sequi dolores in dolorem repudiandae rerum.
+          Florist karangan bunga yang terpercaya di kota Bandung dan kota Cimahi. Kami menyediakan berbagai macam karangan bunga dan juga bouquet terbaik. Kami juga melayani pemesanan karangan bunga yang dijual di kota Bandung dan kota Cimahi.
         </p>
       </div>
-      <div className="mt-8 flex flex-col items-center md:flex-row md:justify-center md:gap-8 md:flex-wrap">
+      {/* <div className="mt-8 flex flex-col items-center md:flex-row md:justify-center md:gap-8 md:flex-wrap">
         <Image
           className="w-60 h-36 object-cover mb-4"
           src={Image1}
@@ -62,7 +57,7 @@ const About = () => {
           alt="Picture of the author"
           data-aos="flip-right"
         />
-      </div>
+      </div> */}
     </main>
   );
 };

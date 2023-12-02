@@ -10,12 +10,14 @@ export default function TheFooter(): ReactElement {
       <div className="w-full text-center lg:mx-48 lg:pt-4 2xl:mx-64">
         <div className="w-full justify-between sm:flex sm:items-start sm:justify-between gap-4">
           <div className="flex flex-col items-center">
-            <h1 className="text-2xl font-bold mb-4">FavoriteFlower</h1>
+            <h1 className="text-2xl font-bold mb-4">
+              Favorite<span className="text-primary">Flower</span>
+            </h1>
             <p className="text-sm mb-8 text-justify max-w-xs">
-              Lorem ipsum dolor sit amet consectetur. Quis amet ac est
-              pellentesque pulvinar et ac sed lorem. Vitae viverra congue tellus
-              ut. Ante nisl in sagittis vulputate. Molestie venenatis elit
-              scelerisque aliquam egestas amet hac diam tincidunt lacus.
+              Florist karangan bunga yang terpercaya di kota Bandung dan kota
+              Cimahi. Kami menyediakan berbagai macam karangan bunga dan juga
+              bouquet terbaik. Kami juga melayani pemesanan karangan bunga yang
+              dijual di kota Bandung dan kota Cimahi.
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -33,11 +35,11 @@ export default function TheFooter(): ReactElement {
             </div>
           </div>
         </div>
-      <Footer.Copyright
-        by="❤ WeebzDev XD"
-        href="#"
-        year={new Date().getFullYear()}
-      />
+        <Footer.Copyright
+          by="❤ WeebzDev XD"
+          href="#"
+          year={new Date().getFullYear()}
+        />
       </div>
     </Footer>
   );
