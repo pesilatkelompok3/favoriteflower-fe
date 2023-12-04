@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req: any) {
-  const cookie = req.cookies.get("access_token")?.value;
+  const cookie = req.cookies.get("token")?.value;
 
   // Cek apakah permintaan berasal dari jalur yang tidak perlu dijalankan oleh middleware
   const excludedPaths = [/^\/_next/, /^\/favicon.ico$/, /^\/__ENV.js$/];
@@ -12,6 +12,7 @@ export function middleware(req: any) {
 
   // Jika cookie tidak ada, arahkan pengguna ke halaman login
   if (cookie === undefined) {
+    
     // Cek apakah pengguna sudah berada di halaman login
     if (pathname !== "/login") {
       const url = req.nextUrl.clone();

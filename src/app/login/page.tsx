@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Cookies from "js-cookie";
 import LoginInput from "@/components/LoginInput";
 import Alert from "@/components/Alert";
 import Swal from "sweetalert2";
@@ -9,13 +10,7 @@ import Swal from "sweetalert2";
 export default function DefaultForm() {
   const router = useRouter();
 
-  const onSubmit = async ({
-    username,
-    password,
-  }: {
-    username: string;
-    password: string;
-  }) => {
+  const onSubmit = async ({ username, password }: { username: string; password: string }) => {
     console.log("user:", username, "pass", password);
     try {
       const response = await axios.post(
@@ -24,8 +19,10 @@ export default function DefaultForm() {
           username,
           password,
         },
-        { withCredentials: true }
+        // { withCredentials: true }
       );
+      localStorage.setItem("token", response.data.token)
+      Cookies.set("token", response.data.token);
 
       Swal.fire({
         title: response.statusText,
@@ -36,7 +33,7 @@ export default function DefaultForm() {
         showConfirmButton: false,
       });
 
-      router.push("/admin");
+      router.push('/admin');
 
       return response;
     } catch (err: any) {
