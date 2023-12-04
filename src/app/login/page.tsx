@@ -21,8 +21,8 @@ export default function DefaultForm() {
         },
         // { withCredentials: true }
       );
-
-      Cookies.set("token", response.data.token, { expires: 7000000 });
+      localStorage.setItem("token", response.data.token)
+      Cookies.set("token", response.data.token);
 
       Swal.fire({
         title: response.statusText,

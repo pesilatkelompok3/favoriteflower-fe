@@ -6,6 +6,7 @@ import { VscSignOut } from "react-icons/vsc";
 import Link from "next/link";
 import { useToggle, signOut } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Sidebar = (): React.ReactElement => {
   const [toggle, setToggle] = useToggle();
@@ -13,6 +14,7 @@ const Sidebar = (): React.ReactElement => {
 
   const signOutHandler = async () => {
     await signOut(`${process.env.apiURL}/signout`);
+    Cookies.remove("token");
     router.refresh();
   };
 
