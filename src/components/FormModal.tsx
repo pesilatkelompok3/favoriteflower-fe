@@ -69,9 +69,10 @@ const FormModal = ({
  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
   try {
    const file = event.target.files?.[0];
+   console.log({ file });
 
    if (file) {
-    if (file.size > 1000000) {
+    if (file.size > 5000000) {
      throw new Error('File too large');
     }
 

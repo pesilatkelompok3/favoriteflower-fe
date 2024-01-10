@@ -61,7 +61,7 @@ const EditProduct = ({ params: { id } }: { params: { id?: string } }) => {
    const file = event.target.files?.[0];
 
    if (file) {
-    if (file.size > 1000000) {
+    if (file.size > 5000000) {
      throw new Error('File too large');
     }
     const imageRezise = await resizeFile(file);
