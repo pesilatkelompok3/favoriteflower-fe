@@ -19,6 +19,12 @@ const nextConfig = {
         hostname: 'source.unsplash.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        hostname: 'localhost',
+      },
+      {
+        hostname: 'res.cloudinary.com',
       }
     ]
   },

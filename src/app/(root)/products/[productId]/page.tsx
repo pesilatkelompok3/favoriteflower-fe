@@ -30,7 +30,7 @@ type ProductParams = {
 type ProductProps = {
  id: string;
  name: string;
- url: string;
+ image: string;
  price: string;
  category: string;
  description: string;
@@ -54,11 +54,8 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
  useEffect(() => {
   const fetchProductById = async () => {
    try {
-    const response = await axios.get(`${process.env.apiURL}/products/${productId}`);
-
-    console.log(response);
-
-    setProduct(response.data);
+    const response = await axios.get(`${process.env.apiURL}/api/products/${productId}`);
+    setProduct(response.data.data.product);
     setLoading(false);
    } catch (err) {
     console.log(err);
@@ -68,8 +65,7 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
   fetchProductById();
 
   const fetchProducts = async () => {
-   const response = await fetchData(`${process.env.apiURL}/products`);
-
+   const response = await fetchData(`${process.env.apiURL}/api/products`);
    setProducts(response);
    setLoading(false);
   };
@@ -108,15 +104,15 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
 
  return (
   <>
-   <head>
+   {/* <head>
     <title>{product?.name}</title>
     <meta name='description' content={product?.description} />
-   </head>
+   </head> */}
    {!loading && product && (
     <>
      <ProductDetailCard
       key={product.id}
-      imgUrl={product.url}
+      imgUrl={product.image}
       name={product.name}
       price={formatPrice(totalPrice.toString())}
       category={product.category}
@@ -136,7 +132,16 @@ const Product = ({ params: { productId } }: ProductParams): React.ReactElement =
          .filter((p: ProductProps) => p.id !== product.id) // Exclude the product being viewed
          .slice(0, maxDisplayedProducts)
 
-         .map((product: ProductProps) => <ProductCard key={product.id} name={product.name} price={formatPrice(product.price)} id={product.id} category={product.category} url={product.url} />)}
+         .map((product: ProductProps) => (
+          <ProductCard
+           key={product.id}
+           name={product.name}
+           price={formatPrice(product.price)}
+           id={product.id}
+           category={product.category}
+           url={product.image}
+          />
+         ))}
       </div>
      </div>
     </>
