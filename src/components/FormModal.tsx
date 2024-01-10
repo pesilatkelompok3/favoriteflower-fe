@@ -72,7 +72,7 @@ const FormModal = ({
    console.log({ file });
 
    if (file) {
-    if (file.size > 5000000) {
+    if (file.size > 2000000) {
      throw new Error('File too large');
     }
 
