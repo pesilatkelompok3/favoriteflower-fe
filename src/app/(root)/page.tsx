@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero title={""} bread1={""} bread2={""} />
-      <About />
+      {/* <About /> */}
       <ProductUs />
       <Testimonial />
       <ContactUs />
